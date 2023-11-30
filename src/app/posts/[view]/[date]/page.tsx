@@ -1,4 +1,5 @@
 import getPostsByDate from '@/utils/getPostsByDate'
+import Post from '@/components/Post'
 
 interface ParamsType {
   view: 'day' | 'month'
@@ -15,6 +16,8 @@ export default async function PostsPage({ params }: { params: ParamsType }) {
   const dates = Object.keys(posts).sort(alphabetDesc)
 
   return dates.map((date) => (
-    <div key={posts[date][0].id}>{posts[date][0].localDate.toUTCString()}</div>
+    <div key={posts[date][0].id}>
+      <Post content={posts[date][0].content} />
+    </div>
   ))
 }
