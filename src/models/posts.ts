@@ -4,7 +4,7 @@ export interface PostType extends mongoose.Document {
   absoluteDate: Date
   timeOffset: Number
   localDate: Date
-  content: {}
+  content: object
 }
 
 const transformation = (_: PostType, returnedObj: Record<string, any>) => {
