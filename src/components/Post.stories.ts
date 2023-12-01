@@ -6,6 +6,7 @@ type Story = StoryObj<typeof meta>
 
 const meta = {
   component: Post,
+  title: 'Posts/Post',
   parameters: {
     layout: 'centered',
   },

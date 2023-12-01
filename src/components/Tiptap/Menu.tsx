@@ -1,15 +1,46 @@
 import styled from 'styled-components'
 import { BubbleMenu } from '@tiptap/react'
+import {
+  RiBold,
+  RiItalic,
+  RiUnderline,
+  RiStrikethrough,
+  RiMarkPenLine,
+  RiLink,
+  RiLinkUnlink,
+  RiH1,
+  RiH2,
+  RiListUnordered,
+  RiListOrdered,
+  RiDoubleQuotesL,
+  RiFormatClear,
+} from 'react-icons/ri'
 import { useCurrentEditor } from '@tiptap/react'
 
+const MenuWrapper = styled(BubbleMenu)`
+  background-color: #222;
+  border-radius: 0.45rem;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0.125rem;
+`
+
 const Button = styled.button`
-  background-color: black;
+  align-items: center;
+  background-color: #222;
   border: 0;
   border-radius: 0.25rem;
   color: white;
-  font-size: 0.75rem;
-  margin: 0 0.25rem 0.25rem 0;
-  padding: 0.25rem 0.5rem;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: center;
+  margin: 0.125rem;
+  padding: 0.25rem 0.375rem;
+
+  &:hover {
+    background-color: #444;
+    cursor: pointer;
+  }
 `
 
 export default function Menu() {
@@ -19,11 +50,29 @@ export default function Menu() {
     return null
   }
 
+  const isSelectionLink = editor.getAttributes('link').href
+
+  const linkHandler = () => {
+    if (isSelectionLink) {
+      return editor.chain().focus().extendMarkRange('link').unsetLink().run()
+    }
+
+    const suppliedHref = window.prompt('URL')
+    if (!suppliedHref) return
+
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange('link')
+      .setLink({ href: suppliedHref })
+      .run()
+  }
+
   return (
-    <BubbleMenu
+    <MenuWrapper
       editor={editor}
       tippyOptions={{
-        maxWidth: 260,
+        maxWidth: '11.5rem',
       }}
     >
       <Button
@@ -32,7 +81,7 @@ export default function Menu() {
           editor.chain().focus().toggleBold().run()
         }}
       >
-        B
+        <RiBold />
       </Button>
       <Button
         type='button'
@@ -40,7 +89,7 @@ export default function Menu() {
           editor.chain().focus().toggleItalic().run()
         }}
       >
-        I
+        <RiItalic />
       </Button>
       <Button
         type='button'
@@ -48,7 +97,7 @@ export default function Menu() {
           editor.chain().focus().toggleUnderline().run()
         }}
       >
-        U
+        <RiUnderline />
       </Button>
       <Button
         type='button'
@@ -56,7 +105,7 @@ export default function Menu() {
           editor.chain().focus().toggleStrike().run()
         }}
       >
-        strike
+        <RiStrikethrough />
       </Button>
       <Button
         type='button'
@@ -64,33 +113,18 @@ export default function Menu() {
           editor.chain().focus().toggleHighlight().run()
         }}
       >
-        highlight
+        <RiMarkPenLine />
       </Button>
-      {/* <Button
-    type="button"
-      onClick={() => {
-        
-        editor.chain().focus().clearNodes().run()
-      }}
-    >
-      clear nodes
-    </Button> */}
-      {/* <Button
-    type="button"
-      onClick={() => {
-        
-        editor.chain().focus().setParagraph().run()
-      }}
-    >
-      paragraph
-    </Button> */}
+      <Button type='button' onClick={linkHandler}>
+        {isSelectionLink ? <RiLinkUnlink /> : <RiLink />}
+      </Button>
       <Button
         type='button'
         onClick={() => {
           editor.chain().focus().toggleHeading({ level: 1 }).run()
         }}
       >
-        h1
+        <RiH1 />
       </Button>
       <Button
         type='button'
@@ -98,47 +132,16 @@ export default function Menu() {
           editor.chain().focus().toggleHeading({ level: 2 }).run()
         }}
       >
-        h2
+        <RiH2 />
       </Button>
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().toggleHeading({ level: 3 }).run()
-      }}
-    >
-      h3
-    </Button> */}
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().toggleHeading({ level: 4 }).run()
-      }}
-    >
-      h4
-    </Button> */}
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().toggleHeading({ level: 5 }).run()
-      }}
-    >
-      h5
-    </Button> */}
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().toggleHeading({ level: 6 }).run()
-      }}
-    >
-      h6
-    </Button> */}
+
       <Button
         type='button'
         onClick={() => {
           editor.chain().focus().toggleBulletList().run()
         }}
       >
-        ul
+        <RiListUnordered />
       </Button>
       <Button
         type='button'
@@ -146,74 +149,25 @@ export default function Menu() {
           editor.chain().focus().toggleOrderedList().run()
         }}
       >
-        ol
+        <RiListOrdered />
       </Button>
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().toggleCode().run()
-      }}
-    >
-      code
-    </Button> */}
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().toggleCodeBlock().run()
-      }}
-    >
-      code block
-    </Button> */}
+
       <Button
         type='button'
         onClick={() => {
           editor.chain().focus().toggleBlockquote().run()
         }}
       >
-        quote
+        <RiDoubleQuotesL />
       </Button>
       <Button
         type='button'
         onClick={() => {
-          editor.chain().focus().setHorizontalRule().run()
+          editor.chain().focus().unsetAllMarks().clearNodes().run()
         }}
       >
-        line
+        <RiFormatClear />
       </Button>
-      {/* <Button
-      type='button'
-      onClick={() => {
-        editor.chain().focus().setHardBreak().run()
-      }}
-    >
-      hard break
-    </Button> */}
-      {/* <Button
-    type="button"
-      onClick={() => {
-        
-        editor.chain().focus().undo().run()
-      }}
-    >
-      undo
-    </Button> */}
-      {/* <Button
-    type="button"
-      onClick={() => {
-        
-        editor.chain().focus().redo().run()
-      }}
-    >
-      redo
-    </Button> */}
-      <Button
-        type='button'
-        onClick={() => {
-          editor.chain().focus().unsetAllMarks().run()
-        }}
-      >
-        X
-      </Button>
-    </BubbleMenu>
+    </MenuWrapper>
   )
 }

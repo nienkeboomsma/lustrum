@@ -11,7 +11,7 @@ import Menu from './Menu'
 
 const Wrapper = styled.div`
   & p {
-    /* color: ${({ theme }) => theme.s950} */
+    color: ${({ theme }) => theme.s950};
     margin-bottom: 1.125rem;
 
     &:last-child {
@@ -32,8 +32,6 @@ const Wrapper = styled.div`
 
   & mark {
     background-color: ${({ theme }) => theme.s200};
-    padding: 0 0.125rem;
-    margin: 0 -0.125rem;
   }
 
   & h1 {
@@ -71,15 +69,11 @@ const Wrapper = styled.div`
 
   & blockquote {
     background-color: ${({ theme }) => theme.s100};
-    border-left: 0.25rem solid ${({ theme }) => theme.s300};
+    border-left: 0.125rem solid ${({ theme }) => theme.s300};
     margin: 1.25rem 2rem;
     padding: 0.25rem;
     padding-left: 0.5rem;
     position: relative;
-  }
-
-  & hr {
-    border: 1px solid ${({ theme }) => theme.s300};
   }
 `
 const extensions = [Highlight, Link, StarterKit, Typography, Underline]
@@ -88,7 +82,7 @@ export default function Tiptap({
   content,
   editable,
 }: {
-  content: object
+  content: object | string
   editable: boolean
 }) {
   return (
