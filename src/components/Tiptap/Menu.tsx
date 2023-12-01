@@ -24,8 +24,22 @@ const MenuWrapper = styled(BubbleMenu)`
   flex-flow: row wrap;
   padding: 0.125rem;
 `
+const _Button = ({
+  children,
+  onClick,
+  ...props
+}: {
+  children: React.ReactNode
+  onClick: () => void
+}) => {
+  return (
+    <button type='button' onClick={onClick} {...props}>
+      {children}
+    </button>
+  )
+}
 
-const Button = styled.button`
+const Button = styled(_Button)`
   align-items: center;
   background-color: #222;
   border: 0;
@@ -76,7 +90,6 @@ export default function Menu() {
       }}
     >
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleBold().run()
         }}
@@ -84,7 +97,6 @@ export default function Menu() {
         <RiBold />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleItalic().run()
         }}
@@ -92,7 +104,6 @@ export default function Menu() {
         <RiItalic />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleUnderline().run()
         }}
@@ -100,7 +111,6 @@ export default function Menu() {
         <RiUnderline />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleStrike().run()
         }}
@@ -108,18 +118,16 @@ export default function Menu() {
         <RiStrikethrough />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleHighlight().run()
         }}
       >
         <RiMarkPenLine />
       </Button>
-      <Button type='button' onClick={linkHandler}>
+      <Button onClick={linkHandler}>
         {isSelectionLink ? <RiLinkUnlink /> : <RiLink />}
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleHeading({ level: 1 }).run()
         }}
@@ -127,7 +135,6 @@ export default function Menu() {
         <RiH1 />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleHeading({ level: 2 }).run()
         }}
@@ -136,7 +143,6 @@ export default function Menu() {
       </Button>
 
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleBulletList().run()
         }}
@@ -144,7 +150,6 @@ export default function Menu() {
         <RiListUnordered />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleOrderedList().run()
         }}
@@ -153,7 +158,6 @@ export default function Menu() {
       </Button>
 
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().toggleBlockquote().run()
         }}
@@ -161,7 +165,6 @@ export default function Menu() {
         <RiDoubleQuotesL />
       </Button>
       <Button
-        type='button'
         onClick={() => {
           editor.chain().focus().unsetAllMarks().clearNodes().run()
         }}
