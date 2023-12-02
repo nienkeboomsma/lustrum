@@ -40,7 +40,7 @@ export const InlineFormatting: Story = {
   },
 }
 
-export const Headings: Story = {
+export const HeadingsAndQuote: Story = {
   args: {
     content: posts['01-01-1900'][1].content,
     editable: false,
@@ -50,13 +50,6 @@ export const Headings: Story = {
 export const Lists: Story = {
   args: {
     content: posts['02-01-1900'][0].content,
-    editable: false,
-  },
-}
-
-export const QuoteAndLine: Story = {
-  args: {
-    content: posts['03-01-1900'][1].content,
     editable: false,
   },
 }
