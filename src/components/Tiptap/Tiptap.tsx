@@ -24,6 +24,7 @@ const Wrapper = styled.div`
 
   & a {
     color: ${({ theme }) => theme.s600};
+    text-decoration: underline;
 
     &:hover {
       color: ${({ theme }) => theme.s400};
@@ -69,7 +70,7 @@ const Wrapper = styled.div`
 
   & blockquote {
     background-color: ${({ theme }) => theme.s100};
-    border-left: 0.125rem solid ${({ theme }) => theme.s300};
+    border-left: 0.25rem solid ${({ theme }) => theme.s300};
     margin: 1.25rem 2rem;
     padding: 0.25rem;
     padding-left: 0.5rem;

@@ -18,6 +18,10 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export default GlobalStyles

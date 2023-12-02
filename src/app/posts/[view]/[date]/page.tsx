@@ -1,5 +1,5 @@
 import getPostsByDate from '@/utils/getPostsByDate'
-import Post from '@/components/Post'
+import PostGroup from '@/components/Posts/PostGroup'
 
 interface ParamsType {
   view: 'day' | 'month'
@@ -16,8 +16,6 @@ export default async function PostsPage({ params }: { params: ParamsType }) {
   const dates = Object.keys(posts).sort(alphabetDesc)
 
   return dates.map((date) => (
-    <div key={posts[date][0].id}>
-      <Post content={posts[date][0].content} />
-    </div>
+    <PostGroup key={date} posts={posts[date]} view={view} date={date} />
   ))
 }

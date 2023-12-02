@@ -1,7 +1,15 @@
 import connectToDB from '@/services/mongodb'
-import Post, { PostType } from '@/models/posts'
+import Post, { type ServerSidePost } from '@/models/posts'
 
-type PostsByDateType = Record<string, Array<PostType>>
+export interface ClientSidePost {
+  absoluteDate: Date
+  timeOffset: Number
+  localDate: Date
+  content: object
+  id: string
+}
+
+export type PostsByDate = Record<string, Array<ClientSidePost>>
 
 export default async function getPostsByDate(
   view: 'day' | 'month',
@@ -21,13 +29,15 @@ export default async function getPostsByDate(
     },
   }
 
-  const posts = await Post.find<PostType>(query).sort({ localDate: 'asc' })
+  const posts = await Post.find<ServerSidePost>(query).sort({
+    localDate: 'asc',
+  })
 
-  const postsByDate: PostsByDateType = posts
+  const postsByDate: PostsByDate = posts
     .map((post) => {
       return post.toObject()
     })
-    .reduce((obj: PostsByDateType, post: PostType) => {
+    .reduce((obj: PostsByDate, post: ClientSidePost) => {
       const date = post.localDate
         .toLocaleString('en-GB', {
           day: '2-digit',

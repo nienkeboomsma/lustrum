@@ -7,6 +7,24 @@ import type { Preview } from '@storybook/react'
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
+    backgrounds: {
+      default: 'default',
+      values: [
+        { value: 'hsl(220, 14%, 94%)', name: 'Default' },
+        { value: 'hsl(14, 59%, 97%)', name: 'January' },
+        { value: 'hsl(39, 32%, 94%)', name: 'February' },
+        { value: 'hsl(315, 27%, 94%)', name: 'March' },
+        { value: 'hsl(350, 44%, 94%)', name: 'April' },
+        { value: 'hsl(55, 53%, 94%)', name: 'May' },
+        { value: 'hsl(80, 29%, 94%)', name: 'June' },
+        { value: 'hsl(194, 41%, 94%)', name: 'July' },
+        { value: 'hsl(222, 23%, 94%)', name: 'August' },
+        { value: 'hsl(25, 39%, 93%)', name: 'September' },
+        { value: 'hsl(284, 14%, 94%)', name: 'October' },
+        { value: 'hsl(151, 24%, 94%)', name: 'November' },
+        { value: 'hsl(1, 50%, 94%)', name: 'December' },
+      ],
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

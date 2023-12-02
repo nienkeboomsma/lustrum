@@ -1,9 +1,11 @@
-const posts = {
+import { type PostsByDate } from '@/utils/getPostsByDate'
+
+const posts: PostsByDate = {
   '01-01-1900': [
     {
-      absoluteDate: '1900-01-01T01:00:00.000Z',
+      absoluteDate: new Date('1900-01-01T01:00:00.000Z'),
       timeOffset: 0,
-      localDate: '1900-01-01T01:00:00.000Z',
+      localDate: new Date('1900-01-01T01:00:00.000Z'),
       content: {
         type: 'doc',
         content: [
@@ -58,9 +60,9 @@ const posts = {
       id: '6568c47e099f74818bb7e234',
     },
     {
-      absoluteDate: '1900-01-01T11:00:00.000Z',
+      absoluteDate: new Date('1900-01-01T11:00:00.000Z'),
       timeOffset: 0,
-      localDate: '1900-01-01T11:00:00.000Z',
+      localDate: new Date('1900-01-01T11:00:00.000Z'),
       content: {
         type: 'doc',
         content: [
@@ -92,6 +94,15 @@ const posts = {
               },
             ],
           },
+          {
+            type: 'blockquote',
+            content: [
+              {
+                type: 'paragraph',
+                content: [{ type: 'text', text: 'This is a quote!' }],
+              },
+            ],
+          },
         ],
       },
       id: '6568c49a099f74818bb7e238',
@@ -99,9 +110,9 @@ const posts = {
   ],
   '02-01-1900': [
     {
-      absoluteDate: '1900-01-02T16:00:00.000Z',
+      absoluteDate: new Date('1900-01-02T16:00:00.000Z'),
       timeOffset: 0,
-      localDate: '1900-01-02T16:00:00.000Z',
+      localDate: new Date('1900-01-02T16:00:00.000Z'),
       content: {
         type: 'doc',
         content: [
@@ -204,9 +215,9 @@ const posts = {
   ],
   '03-01-1900': [
     {
-      absoluteDate: '1900-01-03T14:00:00.000Z',
+      absoluteDate: new Date('1900-01-03T14:00:00.000Z'),
       timeOffset: 0,
-      localDate: '1900-01-03T14:00:00.000Z',
+      localDate: new Date('1900-01-03T14:00:00.000Z'),
       content: {
         type: 'doc',
         content: [
@@ -224,9 +235,9 @@ const posts = {
       id: '6568c5a8099f74818bb7e252',
     },
     {
-      absoluteDate: '1900-01-03T18:00:00.000Z',
+      absoluteDate: new Date('1900-01-03T18:00:00.000Z'),
       timeOffset: 0,
-      localDate: '1900-01-03T18:00:00.000Z',
+      localDate: new Date('1900-01-03T18:00:00.000Z'),
       content: {
         type: 'doc',
         content: [
@@ -253,12 +264,10 @@ const posts = {
             content: [
               {
                 type: 'text',
-                text: 'Fusce malesuada nisi libero, non volutpat ex blandit et. Morbi blandit varius felis ut bibendum. Cras commodo metus odio, vel laoreet lacus faucibus cursus. Vivamus non nisl ullamcorper, tincidunt massa sed, dictum sapien. Here is a line 👇🏻',
+                text: 'Fusce malesuada nisi libero, non volutpat ex blandit et. Morbi blandit varius felis ut bibendum. Cras commodo metus odio, vel laoreet lacus faucibus cursus. Vivamus non nisl ullamcorper, tincidunt massa sed, dictum sapien.',
               },
             ],
           },
-          { type: 'horizontalRule' },
-          { type: 'paragraph' },
         ],
       },
       id: '6568c520099f74818bb7e240',

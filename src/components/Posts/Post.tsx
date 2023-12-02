@@ -1,7 +1,8 @@
 'use client'
 
 import styled from 'styled-components'
-import Tiptap from './Tiptap/Tiptap'
+import Tiptap from '../Tiptap/Tiptap'
+import { type ClientSidePost } from '@/utils/getPostsByDate'
 
 const Wrapper = styled.div`
   background-color: white;
@@ -15,10 +16,10 @@ const Wrapper = styled.div`
   width: 60ch;
 `
 
-export default function Post({ content }: { content: object | string }) {
+export default function Post({ post }: { post: ClientSidePost }) {
   return (
     <Wrapper>
-      <Tiptap content={content} editable={false} />
+      <Tiptap content={post.content} editable={false} />
     </Wrapper>
   )
 }

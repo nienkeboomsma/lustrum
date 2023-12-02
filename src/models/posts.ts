@@ -1,20 +1,23 @@
 import mongoose from 'mongoose'
 
-export interface PostType extends mongoose.Document {
+export interface ServerSidePost extends mongoose.Document {
   absoluteDate: Date
   timeOffset: Number
   localDate: Date
   content: object
 }
 
-const transformation = (_: PostType, returnedObj: Record<string, any>) => {
+const transformation = (
+  _: ServerSidePost,
+  returnedObj: Record<string, any>
+) => {
   returnedObj.id = returnedObj._id.toString()
   delete returnedObj._id
   delete returnedObj.__v
   return returnedObj
 }
 
-const postSchema = new mongoose.Schema<PostType>(
+const postSchema = new mongoose.Schema<ServerSidePost>(
   {
     absoluteDate: Date,
     timeOffset: Number,
@@ -32,6 +35,7 @@ const postSchema = new mongoose.Schema<PostType>(
 )
 
 const Post =
-  mongoose.models.Post<PostType> ?? mongoose.model<PostType>('Post', postSchema)
+  mongoose.models.Post<ServerSidePost> ??
+  mongoose.model<ServerSidePost>('Post', postSchema)
 
 export default Post
