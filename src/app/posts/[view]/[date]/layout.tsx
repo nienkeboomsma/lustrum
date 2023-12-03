@@ -1,8 +1,10 @@
 'use client'
 
 import { ThemeProvider } from 'styled-components'
+import useThemeFromURL from '@/hooks/useThemeFromURL'
 import theme, { MonthNumber } from '@/styles/theme'
 import { isEnumValue } from '@/utils/enum'
+import GlobalStyles from '@/styles/GlobalStyles'
 
 export default function PostsLayout({
   params: { date },
@@ -11,18 +13,12 @@ export default function PostsLayout({
   params: { date: string }
   children: React.ReactNode
 }) {
-  const month = date.split('-')[1]
-  const currentMonth = new Date().getMonth().toString().padStart(2, '0')
+  const chosenTheme = useThemeFromURL()
 
-  let chosenTheme
-
-  if (isEnumValue(MonthNumber, month)) {
-    chosenTheme = theme[month]
-  } else if (isEnumValue(MonthNumber, currentMonth)) {
-    chosenTheme = theme[currentMonth]
-  } else {
-    chosenTheme = theme.default
-  }
-
-  return <ThemeProvider theme={chosenTheme}>{children}</ThemeProvider>
+  return (
+    <ThemeProvider theme={chosenTheme}>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  )
 }

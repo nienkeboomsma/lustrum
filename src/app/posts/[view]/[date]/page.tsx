@@ -8,12 +8,17 @@ interface ParamsType {
 
 export default async function PostsPage({ params }: { params: ParamsType }) {
   const { view, date } = params
-
   const posts = await getPostsByDate(view, date)
+  const dates = Object.keys(posts)
 
-  const alphabetDesc = (a: string, b: string) => b.localeCompare(a)
+  if (dates.length === 0) {
+    return 'Oops, nothing to show here'
+  }
 
-  const dates = Object.keys(posts).sort(alphabetDesc)
+  if (view === 'day') {
+    const alphabetDesc = (a: string, b: string) => b.localeCompare(a)
+    dates.sort(alphabetDesc)
+  }
 
   return dates.map((date) => (
     <PostGroup key={date} posts={posts[date]} view={view} date={date} />
