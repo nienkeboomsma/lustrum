@@ -1,3 +1,5 @@
+'use client'
+
 import styled from 'styled-components'
 import Link from 'next/link'
 
@@ -36,21 +38,22 @@ export default function PostDate({
 }) {
   const href = `/posts/${view === 'day' ? 'month' : 'day'}/${date}`
 
-  const constructDisplayDate = () => {
+  const getDisplayDate = () => {
     const [day, month, year] = date.split('-')
     const dateObj = new Date(Number(year), Number(month) - 1, Number(day))
     const localeDate = dateObj.toLocaleDateString('en-GB', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
-      timeZone: 'UTC',
     })
     return view === 'day' ? localeDate.slice(2) : localeDate.slice(0, -5)
   }
 
+  const displayDate = getDisplayDate()
+
   return (
     <Link href={href}>
-      <Wrapper>{constructDisplayDate()}</Wrapper>
+      <Wrapper>{displayDate}</Wrapper>
     </Link>
   )
 }

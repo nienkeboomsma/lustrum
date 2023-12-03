@@ -43,6 +43,8 @@ export default async function getPostsByDate(
           day: '2-digit',
           month: '2-digit',
           year: 'numeric',
+          // localDate is encoded in UTC to prevent timezone confusions
+          timeZone: 'UTC',
         })
         .replaceAll('/', '-')
 
