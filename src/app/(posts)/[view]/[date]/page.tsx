@@ -1,5 +1,6 @@
 import getPostsByDate from '@/utils/getPostsByDate'
 import PostGroup from '@/components/Posts/PostGroup'
+import Link from 'next/link'
 
 interface ParamsType {
   view: 'day' | 'month'

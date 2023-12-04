@@ -36,7 +36,7 @@ export default function PostDate({
   view: 'day' | 'month'
   date: string
 }) {
-  const href = `/posts/${view === 'day' ? 'month' : 'day'}/${date}`
+  const href = `/${view === 'day' ? 'month' : 'day'}/${date}`
 
   const getDisplayDate = () => {
     const [day, month, year] = date.split('-')
