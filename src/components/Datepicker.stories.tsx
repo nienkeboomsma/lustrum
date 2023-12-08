@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useArgs } from '@storybook/preview-api'
 import Datepicker from './Datepicker'
+import { userEvent, within } from '@storybook/testing-library'
 
 type Story = StoryObj<typeof meta>
 
 const meta = {
   component: Datepicker,
   title: 'Datepicker',
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   decorators: [
     (Story, context) => {
@@ -19,9 +17,13 @@ const meta = {
         setArgs({ date })
       }
 
-      return <Story args={{ ...context.args, onChange }} />
+      return <Story args={{ ...context.args, onChange: onChange }} />
     },
   ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.keyboard('{Tab}')
+  },
 } satisfies Meta<typeof Datepicker>
 
 export default meta
