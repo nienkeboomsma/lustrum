@@ -14,7 +14,7 @@ export enum MonthNumber {
   default = 'default',
 }
 
-type Colours = {
+type Theme = {
   s50: string
   s100: string
   s200: string
@@ -28,7 +28,7 @@ type Colours = {
   s950: string
 }
 
-const theme: Record<MonthNumber, Colours> = {
+const themes: Record<MonthNumber, Theme> = {
   '01': {
     s50: 'hsl(14, 59%, 97%)',
     s100: 'hsl(14, 58%, 94%)',
@@ -200,4 +200,4 @@ const theme: Record<MonthNumber, Colours> = {
   },
 }
 
-export default theme
+export default themes

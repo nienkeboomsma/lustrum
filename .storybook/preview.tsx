@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from '../src/styles/GlobalStyles'
-import theme, { type MonthNumber } from '../src/styles/theme'
+import themes, { type MonthNumber } from '../src/styles/theme'
 
 import type { Preview } from '@storybook/react'
 
@@ -36,7 +36,7 @@ const preview: Preview = {
       const month: MonthNumber =
         context.parameters.theme || context.globals.theme
       return (
-        <ThemeProvider theme={theme[month]}>
+        <ThemeProvider theme={themes[month]}>
           <GlobalStyles />
           <Story />
         </ThemeProvider>
