@@ -3,7 +3,8 @@ export function getPaddedDateString(date: Date) {
 }
 
 export function getPaddedMonthString(date: Date) {
-  return date.getMonth().toString().padStart(2, '0')
+  const currentMonth = date.getMonth() + 1
+  return currentMonth.toString().padStart(2, '0')
 }
 
 export function getPaddedDayMonthYearString(date: Date) {

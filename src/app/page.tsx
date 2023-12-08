@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 
 export default function Home() {
   const dateString = getPaddedDayMonthYearString(new Date())
-  const href = `/posts/day/${dateString}`
+  const href = `/day/${dateString}`
 
   redirect(href)
 }
