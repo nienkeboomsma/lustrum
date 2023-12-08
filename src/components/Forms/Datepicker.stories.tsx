@@ -7,7 +7,7 @@ type Story = StoryObj<typeof meta>
 
 const meta = {
   component: Datepicker,
-  title: 'Datepicker',
+  title: 'Forms/Datepicker',
   tags: ['autodocs'],
   decorators: [
     (Story, context) => {
