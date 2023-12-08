@@ -1,4 +1,4 @@
-import theme, { MonthNumber } from '@/styles/theme'
+import themes, { MonthNumber } from '@/styles/theme'
 import { getPaddedMonthString } from '@/utils/dateStrings'
 import { isEnumValue } from '@/utils/enum'
 import { usePathname } from 'next/navigation'
@@ -11,10 +11,10 @@ export default function useThemeFromURL() {
   const currentMonth = getPaddedMonthString(new Date())
 
   if (isEnumValue(MonthNumber, urlMonth)) {
-    return theme[urlMonth]
+    return themes[urlMonth]
   } else if (isEnumValue(MonthNumber, currentMonth)) {
-    return theme[currentMonth]
+    return themes[currentMonth]
   } else {
-    return theme.default
+    return themes.default
   }
 }
