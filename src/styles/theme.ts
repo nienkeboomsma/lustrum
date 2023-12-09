@@ -1,17 +1,17 @@
 export enum MonthNumber {
-  january = '01',
-  february = '02',
-  march = '03',
-  april = '04',
-  may = '05',
-  june = '06',
-  july = '07',
-  august = '08',
-  september = '09',
-  october = '10',
-  november = '11',
-  december = '12',
-  default = 'default',
+  January = '01',
+  February = '02',
+  March = '03',
+  April = '04',
+  May = '05',
+  June = '06',
+  July = '07',
+  August = '08',
+  September = '09',
+  October = '10',
+  November = '11',
+  December = '12',
+  Default = 'default',
 }
 
 type Theme = {
@@ -28,7 +28,9 @@ type Theme = {
   s950: string
 }
 
-const themes: Record<MonthNumber, Theme> = {
+export type Themes = Record<MonthNumber, Theme>
+
+const themes: Themes = {
   '01': {
     s50: 'hsl(14, 59%, 97%)',
     s100: 'hsl(14, 58%, 94%)',
