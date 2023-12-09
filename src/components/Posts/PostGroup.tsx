@@ -19,7 +19,6 @@ export default function PostGroup({ posts, view, date }: PostGroupParams) {
   return (
     <Wrapper>
       <PostDate view={view} date={date} />
-
       {posts.map((post) => (
         <Post key={post.id} post={post}></Post>
       ))}
