@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { DefaultTheme } from 'styled-components'
 
 enum Intent {
@@ -107,37 +107,36 @@ const getSizeStyles = ({ $size }: { $size: Size }) => {
 }
 
 const StyledButton = styled.button<StyleTypes>`
-  background-color: ${(props) =>
-    getIntentStyles(props).default.backgroundColor};
-  border-color: ${(props) => getIntentStyles(props).default.borderColor};
-  border-style: solid;
-  border-width: 1px;
-  border-radius: ${getBorderRadius};
-  box-shadow: ${(props) => getBoxShadow(props, false)};
-  color: ${(props) => getIntentStyles(props).default.color};
-  font-family: inherit;
-  font-size: ${(props) => getSizeStyles(props).fontSize};
-  font-weight: 300;
-  letter-spacing: ${(props) => getSizeStyles(props).letterSpacing};
-  /* max-width: fit-content; */
-  padding: ${(props) => getSizeStyles(props).padding};
-  text-align: center;
-  text-transform: uppercase;
-  user-select: none;
+  ${(props) => css`
+    background-color: ${getIntentStyles(props).default.backgroundColor};
+    border-color: ${getIntentStyles(props).default.borderColor};
+    border-radius: ${getBorderRadius(props)};
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: ${getBoxShadow(props, false)};
+    color: ${getIntentStyles(props).default.color};
+    font-family: inherit;
+    font-size: ${getSizeStyles(props).fontSize};
+    font-weight: 300;
+    letter-spacing: ${getSizeStyles(props).letterSpacing};
+    padding: ${getSizeStyles(props).padding};
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
 
-  &:active {
-    box-shadow: ${(props) => getBoxShadow(props, false)};
-    transform: translateY(1px);
-    transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
-  }
+    &:active {
+      box-shadow: ${getBoxShadow(props, false)};
+      transform: translateY(1px);
+      transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
 
-  &:hover {
-    background-color: ${(props) =>
-      getIntentStyles(props).hover.backgroundColor};
-    border-color: ${(props) => getIntentStyles(props).hover.borderColor};
-    color: ${(props) => getIntentStyles(props).hover.color};
-    cursor: pointer;
-  }
+    &:hover {
+      background-color: ${getIntentStyles(props).hover.backgroundColor};
+      border-color: ${getIntentStyles(props).hover.borderColor};
+      color: ${getIntentStyles(props).hover.color};
+      cursor: pointer;
+    }
+  `}
 `
 
 export default function Button({
