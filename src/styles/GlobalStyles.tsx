@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   * {
+    outline-color: ${({ theme }) => theme.s500};
     margin: 0;
   }
 
@@ -22,6 +23,14 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+
+  input, textarea, select {
+    width: 100%;
   }
 `
 

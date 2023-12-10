@@ -9,6 +9,9 @@ const meta = {
   component: Button,
   title: 'Forms/Button',
   tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof Button>
 
 export default meta
@@ -21,7 +24,9 @@ export const Primary: Story = {
     shape: Button.Shape.Rectangle,
     size: Button.Size.Medium,
   },
-  parameters: { backgrounds: { default: 'White' } },
+  parameters: {
+    backgrounds: { default: 'White' },
+  },
 }
 
 export const Secondary: Story = {
