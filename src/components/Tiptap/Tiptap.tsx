@@ -1,6 +1,6 @@
 'use client'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { EditorProvider } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import Link from '@tiptap/extension-link'
@@ -9,7 +9,25 @@ import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
 import Menu from './Menu'
 
-const Wrapper = styled.div`
+type TiptapProps = {
+  content: object | string
+  editable: boolean
+}
+
+const Wrapper = styled.div<{ $editable: boolean }>`
+  & .tiptap {
+    width: 100%;
+
+    ${({ theme, $editable }) =>
+      $editable &&
+      css`
+        background-color: white;
+        border: 1px solid ${theme.s500};
+        border-radius: 4.5px;
+        padding: 0.125rem 0.375rem;
+      `}
+  }
+
   & p {
     color: ${({ theme }) => theme.s950};
     margin-bottom: 1.125rem;
@@ -79,15 +97,9 @@ const Wrapper = styled.div`
 `
 const extensions = [Highlight, Link, StarterKit, Typography, Underline]
 
-export default function Tiptap({
-  content,
-  editable,
-}: {
-  content: object | string
-  editable: boolean
-}) {
+export default function Tiptap({ content, editable }: TiptapProps) {
   return (
-    <Wrapper>
+    <Wrapper $editable={editable}>
       <EditorProvider
         extensions={extensions}
         content={content}

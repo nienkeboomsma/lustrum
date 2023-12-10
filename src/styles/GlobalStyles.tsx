@@ -23,6 +23,14 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+
+  input, textarea, select {
+    width: 100%;
+  }
 `
 
 export default GlobalStyles

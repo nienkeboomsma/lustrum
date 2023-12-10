@@ -5,6 +5,10 @@ import 'react-datepicker/dist/react-datepicker.css'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
+  .react-datepicker-wrapper {
+    display: block;
+  }
+
   .react-datepicker * {
     color: ${({ theme }) => theme.s950};
   }
