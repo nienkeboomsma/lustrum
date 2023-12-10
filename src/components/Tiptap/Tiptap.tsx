@@ -4,14 +4,16 @@ import styled, { css } from 'styled-components'
 import { EditorProvider } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import Link from '@tiptap/extension-link'
+import Menu from './Menu'
+import Placeholder from '@tiptap/extension-placeholder'
 import StarterKit from '@tiptap/starter-kit'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
-import Menu from './Menu'
 
 type TiptapProps = {
   content: object | string
   editable: boolean
+  placeholder: string
 }
 
 const Wrapper = styled.div<{ $editable: boolean }>`
@@ -26,6 +28,14 @@ const Wrapper = styled.div<{ $editable: boolean }>`
         border-radius: 4.5px;
         padding: 0.125rem 0.375rem;
       `}
+
+    & p.is-editor-empty:first-child::before {
+      color: #aaa;
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
   }
 
   & p {
@@ -95,9 +105,24 @@ const Wrapper = styled.div<{ $editable: boolean }>`
     position: relative;
   }
 `
-const extensions = [Highlight, Link, StarterKit, Typography, Underline]
 
-export default function Tiptap({ content, editable }: TiptapProps) {
+export default function Tiptap({
+  content,
+  editable,
+  placeholder,
+}: TiptapProps) {
+  const extensions = [
+    Highlight,
+    Link,
+    Placeholder.configure({
+      placeholder,
+      showOnlyWhenEditable: true,
+    }),
+    StarterKit,
+    Typography,
+    Underline,
+  ]
+
   return (
     <Wrapper $editable={editable}>
       <EditorProvider

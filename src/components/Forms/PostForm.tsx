@@ -37,8 +37,13 @@ export default function Postform({ post }: { post?: ClientSidePost }) {
         aria-label='Date'
         date={initialDate}
         onChange={() => {}}
-      />{' '}
-      <Tiptap aria-label='Post content' content={initialContent} editable />
+      />
+      <Tiptap
+        aria-label='Post content'
+        content={initialContent}
+        editable
+        placeholder='How was your day?'
+      />
       <ButtonsWrapper>
         <Button
           intent={Button.Intent.Secondary}
