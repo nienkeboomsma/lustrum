@@ -17,6 +17,9 @@ const meta = {
       </PostWrapper>
     ),
   ],
+  parameters: {
+    layout: 'centered',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
   },
