@@ -32,8 +32,8 @@ export default function PostDate({
   const displayDate = getDisplayDate()
 
   return (
-    <Link href={href}>
-      <Wrapper>
+    <Wrapper>
+      <Link href={href} tabIndex={-1}>
         <Button
           intent={Button.Intent.Primary}
           shadow={true}
@@ -42,7 +42,7 @@ export default function PostDate({
         >
           {displayDate}
         </Button>
-      </Wrapper>
-    </Link>
+      </Link>
+    </Wrapper>
   )
 }

@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   * {
+    outline-color: ${({ theme }) => theme.s500};
     margin: 0;
   }
 
