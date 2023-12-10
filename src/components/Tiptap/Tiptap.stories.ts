@@ -9,6 +9,7 @@ const meta = {
   component: Tiptap,
   title: 'Tiptap/Editor',
   parameters: {
+    backgrounds: { default: 'White' },
     layout: 'centered',
   },
   tags: ['autodocs'],

@@ -21,6 +21,7 @@ export const Primary: Story = {
     shape: Button.Shape.Rectangle,
     size: Button.Size.Medium,
   },
+  parameters: { backgrounds: { default: 'White' } },
 }
 
 export const Secondary: Story = {
