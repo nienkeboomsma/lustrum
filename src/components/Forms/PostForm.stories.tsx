@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import PostForm from './PostForm'
-import { userEvent, within } from '@storybook/testing-library'
 import posts from '../../stories/fixtures/posts'
 import PostWrapper from '../Posts/PostWrapper'
+import { addPost, editPost } from '@/app/actions'
 
 type Story = StoryObj<typeof meta>
 
@@ -20,17 +20,35 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-  },
 } satisfies Meta<typeof PostForm>
 
 export default meta
 
+const fakeNewAction: typeof addPost = async (content, date, id) => {
+  console.table({ content, date, id })
+}
+
+const fakeEditAction: typeof editPost = async (postId, content, date, id) => {
+  console.table({ postId, content, date, id })
+}
+
 export const NewPost: Story = {
-  args: {},
+  // @ts-ignore (Storybook does not like the discriminating union type)
+  args: {
+    action: fakeNewAction,
+    onCancel: () => {},
+    type: PostForm.FormType.New,
+    view: 'day',
+  },
 }
 
 export const EditPost: Story = {
-  args: { post: posts['01-01-1900'][0] },
+  // @ts-ignore (Storybook does not like the discriminating union type)
+  args: {
+    action: fakeEditAction,
+    editablePost: posts['01-01-1900'][0],
+    onCancel: () => {},
+    type: PostForm.FormType.Edit,
+    view: 'month',
+  },
 }

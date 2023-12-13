@@ -3,8 +3,8 @@ import { type PostsByDate } from '@/utils/getPostsByDate'
 const posts: PostsByDate = {
   '01-01-1900': [
     {
-      absoluteDate: new Date('1900-01-01T01:00:00.000Z'),
-      timeOffset: 0,
+      absoluteDate: new Date('1900-01-01T00:00:00.000Z'),
+      timeOffset: -60,
       localDate: new Date('1900-01-01T01:00:00.000Z'),
       content: {
         type: 'doc',
@@ -60,8 +60,8 @@ const posts: PostsByDate = {
       id: '6568c47e099f74818bb7e234',
     },
     {
-      absoluteDate: new Date('1900-01-01T11:00:00.000Z'),
-      timeOffset: 0,
+      absoluteDate: new Date('1900-01-01T10:00:00.000Z'),
+      timeOffset: -60,
       localDate: new Date('1900-01-01T11:00:00.000Z'),
       content: {
         type: 'doc',
@@ -110,8 +110,8 @@ const posts: PostsByDate = {
   ],
   '02-01-1900': [
     {
-      absoluteDate: new Date('1900-01-02T16:00:00.000Z'),
-      timeOffset: 0,
+      absoluteDate: new Date('1900-01-02T15:00:00.000Z'),
+      timeOffset: -60,
       localDate: new Date('1900-01-02T16:00:00.000Z'),
       content: {
         type: 'doc',
@@ -215,8 +215,8 @@ const posts: PostsByDate = {
   ],
   '03-01-1900': [
     {
-      absoluteDate: new Date('1900-01-03T14:00:00.000Z'),
-      timeOffset: 0,
+      absoluteDate: new Date('1900-01-03T13:00:00.000Z'),
+      timeOffset: -60,
       localDate: new Date('1900-01-03T14:00:00.000Z'),
       content: {
         type: 'doc',
@@ -235,8 +235,8 @@ const posts: PostsByDate = {
       id: '6568c5a8099f74818bb7e252',
     },
     {
-      absoluteDate: new Date('1900-01-03T18:00:00.000Z'),
-      timeOffset: 0,
+      absoluteDate: new Date('1900-01-03T17:00:00.000Z'),
+      timeOffset: -60,
       localDate: new Date('1900-01-03T18:00:00.000Z'),
       content: {
         type: 'doc',

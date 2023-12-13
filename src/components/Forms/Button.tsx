@@ -16,6 +16,14 @@ enum Size {
   Large = 'large',
 }
 
+interface PropTypes extends React.ComponentPropsWithoutRef<'button'> {
+  children: React.ReactNode
+  intent: Intent
+  shadow: boolean
+  shape: Shape
+  size: Size
+}
+
 interface StyleTypes {
   $intent: Intent
   $shadow: boolean
@@ -146,15 +154,16 @@ export default function Button({
   shadow,
   shape,
   size,
-}: {
-  children: React.ReactNode
-  intent: Intent
-  shadow: boolean
-  shape: Shape
-  size: Size
-}) {
+  ...rest
+}: PropTypes) {
   return (
-    <StyledButton $intent={intent} $shape={shape} $shadow={shadow} $size={size}>
+    <StyledButton
+      $intent={intent}
+      $shape={shape}
+      $shadow={shadow}
+      $size={size}
+      {...rest}
+    >
       {children}
     </StyledButton>
   )
