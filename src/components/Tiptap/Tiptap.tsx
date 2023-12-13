@@ -1,7 +1,7 @@
 'use client'
 
 import styled, { css } from 'styled-components'
-import { EditorProvider } from '@tiptap/react'
+import { EditorEvents, EditorProvider } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import Link from '@tiptap/extension-link'
 import Menu from './Menu'
@@ -11,8 +11,9 @@ import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
 
 type TiptapProps = {
-  content: object | string
+  defaultContent: object | string
   editable: boolean
+  onUpdate: (props: EditorEvents['update']) => void
   placeholder: string
 }
 
@@ -107,8 +108,9 @@ const Wrapper = styled.div<{ $editable: boolean }>`
 `
 
 export default function Tiptap({
-  content,
+  defaultContent,
   editable,
+  onUpdate,
   placeholder,
 }: TiptapProps) {
   const extensions = [
@@ -125,10 +127,11 @@ export default function Tiptap({
 
   return (
     <Wrapper $editable={editable}>
-      <EditorProvider
-        extensions={extensions}
-        content={content}
+      <EditorProvider // TODO: see if there is a SSR-friendly way to do this
+        content={defaultContent}
         editable={editable}
+        extensions={extensions}
+        onUpdate={onUpdate}
       >
         <Menu />
       </EditorProvider>

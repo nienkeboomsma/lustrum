@@ -5,7 +5,7 @@ export interface ClientSidePost {
   absoluteDate: Date
   timeOffset: Number
   localDate: Date
-  content: object
+  content: object | string
   id: string
 }
 

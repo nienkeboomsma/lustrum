@@ -30,6 +30,6 @@ export default meta
 
 export const Default: Story = {
   args: {
-    date: new Date(),
+    defaultDate: new Date(),
   },
 }

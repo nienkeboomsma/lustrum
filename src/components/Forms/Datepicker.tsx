@@ -84,25 +84,21 @@ const Wrapper = styled.div`
   `}
 `
 
-export default function Datepicker({
-  date,
-  onChange,
-  ...props
-}: {
-  date: Date
+type PropTypes = {
+  defaultDate: Date
   onChange: (date: Date) => void
-}) {
+}
+
+export default function Datepicker({ defaultDate, onChange }: PropTypes) {
   return (
     <Wrapper>
       <OriginalDatepicker
-        id='date'
-        selected={date}
+        dateFormat='d MMMM yyyy HH:mm'
         onChange={onChange}
+        selected={defaultDate}
         showTimeSelect
         timeFormat='HH:mm'
         timeIntervals={60}
-        dateFormat='d MMMM yyyy HH:mm'
-        {...props}
       />
     </Wrapper>
   )
