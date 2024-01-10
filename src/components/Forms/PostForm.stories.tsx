@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import PostForm from './PostForm'
+import PostForm, { PostFormProps } from './PostForm'
 import posts from '../../stories/fixtures/posts'
 import PostWrapper from '../Posts/PostWrapper'
 import { addPost, editPost } from '@/app/actions'
 
-type Story = StoryObj<typeof meta>
+// passing the props directly instead of passing meta so
+// that it recognises the discriminating union properly
+type Story = StoryObj<PostFormProps>
 
 const meta = {
   component: PostForm,
@@ -33,7 +35,6 @@ const fakeEditAction: typeof editPost = async (postId, content, date, id) => {
 }
 
 export const NewPost: Story = {
-  // @ts-ignore (Storybook does not like the discriminating union type)
   args: {
     action: fakeNewAction,
     onCancel: () => {},
@@ -43,7 +44,6 @@ export const NewPost: Story = {
 }
 
 export const EditPost: Story = {
-  // @ts-ignore (Storybook does not like the discriminating union type)
   args: {
     action: fakeEditAction,
     editablePost: posts['01-01-1900'][0],

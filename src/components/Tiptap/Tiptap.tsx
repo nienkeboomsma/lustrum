@@ -10,12 +10,19 @@ import StarterKit from '@tiptap/starter-kit'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
 
-type TiptapProps = {
+type NonEditableProps = {
+  editable: false
   defaultContent: object | string
-  editable: boolean
+}
+
+type EditableProps = {
+  editable: true
+  defaultContent: object | string
   onUpdate: (props: EditorEvents['update']) => void
   placeholder: string
 }
+
+type TiptapProps = NonEditableProps | EditableProps
 
 const Wrapper = styled.div<{ $editable: boolean }>`
   & .tiptap {
@@ -107,12 +114,11 @@ const Wrapper = styled.div<{ $editable: boolean }>`
   }
 `
 
-export default function Tiptap({
-  defaultContent,
-  editable,
-  onUpdate,
-  placeholder,
-}: TiptapProps) {
+export default function Tiptap(props: TiptapProps) {
+  const { defaultContent, editable } = props
+  const placeholder = editable ? props.placeholder : undefined
+  const onUpdate = editable ? props.onUpdate : undefined
+
   const extensions = [
     Highlight,
     Link,

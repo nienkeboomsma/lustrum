@@ -12,7 +12,7 @@ const Wrapper = styled(PostWrapper)`
 export default function Post({ post }: { post: ClientSidePost }) {
   return (
     <Wrapper>
-      <Tiptap content={post.content} editable={false} />
+      <Tiptap defaultContent={post.content} editable={false} />
     </Wrapper>
   )
 }

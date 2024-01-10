@@ -17,21 +17,20 @@ type NewPostAction = typeof addPost
 type EditPostAction = typeof editPost
 
 type NewPostProps = {
-  action: NewPostAction
-  onCancel: () => void
   type: FormType.New
-  view: string
+  action: NewPostAction
 }
 
 type EditPostProps = {
+  type: FormType.Edit
   action: EditPostAction
   editablePost: ClientSidePost
-  onCancel: () => void
-  type: FormType.Edit
-  view: string
 }
 
-type PropTypes = NewPostProps | EditPostProps
+export type PostFormProps = {
+  onCancel: () => void
+  view: string
+} & (NewPostProps | EditPostProps)
 
 const Form = styled.form`
   color: ${({ theme }) => theme.s950};
@@ -61,13 +60,12 @@ const compensateTimezoneOffset = (date: Date) => {
   return compensatedDate
 }
 
-export default function PostForm(props: PropTypes) {
+export default function PostForm(props: PostFormProps) {
   const { action, onCancel, type, view } = props
 
   // the presence or absence of editablePost is a proxy for the 'type'
   // prop, because it is the discriminator between the two types
-  let editablePost: ClientSidePost | undefined
-  if (type === FormType.Edit) editablePost = props.editablePost
+  const editablePost = type === FormType.Edit ? props.editablePost : undefined
 
   const defaultContent = editablePost ? editablePost.content : ''
   const [content, setContent] = useState(defaultContent)
