@@ -1,6 +1,6 @@
 'use client'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Datepicker from './Datepicker'
 import Tiptap from '../Tiptap/Tiptap'
 import Button from './Button'
@@ -39,11 +39,16 @@ const Form = styled.form`
   flex-direction: column;
 `
 
-const StyledDatepicker = styled(Datepicker)`
-  border: 1px solid ${({ theme }) => theme.s500};
-  border-radius: 4.5px;
-  padding: 0.125rem 0.375rem;
-  width: 100%;
+const DatepickerWrapper = styled.div`
+  ${({ theme }) => css`
+    .react-datepicker__input-container input {
+      border: 1px solid ${theme.s500};
+      border-radius: 4.5px;
+      color: ${theme.s950};
+      padding: 0.125rem 0.375rem;
+      width: 100%;
+    }
+  `}
 `
 
 const ButtonsWrapper = styled.div`
@@ -87,11 +92,9 @@ export default function PostForm(props: PostFormProps) {
 
   return (
     <Form action={actionWithParams}>
-      <StyledDatepicker
-        aria-label='Date'
-        defaultDate={date}
-        onChange={setDate}
-      />
+      <DatepickerWrapper>
+        <Datepicker aria-label='Date' defaultDate={date} onChange={setDate} />
+      </DatepickerWrapper>
       <Tiptap
         aria-label='Post content'
         defaultContent={content}

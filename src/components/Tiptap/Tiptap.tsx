@@ -25,6 +25,13 @@ type EditableProps = {
 type TiptapProps = NonEditableProps | EditableProps
 
 const Wrapper = styled.div<{ $editable: boolean }>`
+  [contenteditable]:focus {
+    outline: ${({ theme }) => theme.s500} solid 2px;
+    /* seemingly the only way to fix the inconsistent
+        outline-offset between Tiptap and inputs on Safari */
+    outline-offset: -1px;
+  }
+
   & .tiptap {
     width: 100%;
 

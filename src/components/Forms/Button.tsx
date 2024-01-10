@@ -127,7 +127,7 @@ const StyledButton = styled.button<StyleTypes>`
     font-size: ${getSizeStyles(props).fontSize};
     font-weight: 300;
     letter-spacing: ${getSizeStyles(props).letterSpacing};
-    outline-offset: 3px;
+    outline-offset: 2px;
     padding: ${getSizeStyles(props).padding};
     text-align: center;
     text-transform: uppercase;
