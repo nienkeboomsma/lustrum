@@ -9,13 +9,13 @@ const Wrapper = styled.div`
   margin-bottom: 3rem;
 `
 
-interface PostGroupParams {
+interface PostGroupProps {
   posts: Array<ClientSidePost>
   view: 'day' | 'month'
   date: string
 }
 
-export default function PostGroup({ posts, view, date }: PostGroupParams) {
+export default function PostGroup({ posts, view, date }: PostGroupProps) {
   return (
     <Wrapper>
       <PostDate view={view} date={date} />

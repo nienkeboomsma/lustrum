@@ -84,12 +84,12 @@ const Wrapper = styled.div`
   `}
 `
 
-type PropTypes = {
+type DatepickerProps = {
   defaultDate: Date
   onChange: (date: Date) => void
 }
 
-export default function Datepicker({ defaultDate, onChange }: PropTypes) {
+export default function Datepicker({ defaultDate, onChange }: DatepickerProps) {
   return (
     <Wrapper>
       <OriginalDatepicker
