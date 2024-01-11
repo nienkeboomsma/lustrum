@@ -6,7 +6,8 @@ import Post from './Post'
 import { type ClientSidePost } from '@/utils/getPostsByDate'
 
 const Wrapper = styled.div`
-  margin-bottom: 3rem;
+  margin: 0rem auto 3rem;
+  width: max-content;
 `
 
 interface PostGroupProps {
