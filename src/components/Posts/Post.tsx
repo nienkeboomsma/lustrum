@@ -5,7 +5,10 @@ import OriginalPostWrapper from './PostWrapper'
 import Tiptap from '../Tiptap/Tiptap'
 import { type ClientSidePost } from '@/utils/getPostsByDate'
 import { RiDeleteBinFill, RiPencilFill } from 'react-icons/ri'
-import { deletePost } from '@/app/actions'
+import { deletePost, editPost } from '@/app/actions'
+import useModal from '@/hooks/useModal'
+import Modal from '../Forms/Modal'
+import PostForm from '../Forms/PostForm'
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,30 +48,44 @@ const Button = styled.button`
     }
   }
 
-  &:focus > svg {
+  &:focus-visible > svg {
     color: ${({ theme }) => theme.s500};
   }
 `
 
 export default function Post({ post }: { post: ClientSidePost }) {
+  const { visible, openModal, closeModal } = useModal()
+
   return (
-    <Wrapper>
-      <PostWrapper>
-        <Tiptap defaultContent={post.content} editable={false} />
-      </PostWrapper>
-      <ButtonsWrapper>
-        <Button aria-label='edit post' type='button'>
-          <RiPencilFill />
-        </Button>
-        {/* TODO: add a toast for 'post successfully removed */}
-        <Button
-          aria-label='delete post'
-          type='button'
-          onClick={() => deletePost(post.id, post.localDate, 'day')} // TODO: pass actual view prop/param
-        >
-          <RiDeleteBinFill />
-        </Button>
-      </ButtonsWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <PostWrapper>
+          {JSON.stringify(post.content)}
+          {/* <Tiptap defaultContent={post.content} editable={false} /> */}
+        </PostWrapper>
+        <ButtonsWrapper>
+          <Button aria-label='edit post' type='button' onClick={openModal}>
+            <RiPencilFill />
+          </Button>
+          {/* TODO: add a toast for 'post successfully removed */}
+          <Button
+            aria-label='delete post'
+            type='button'
+            onClick={() => deletePost(post.id, post.localDate, 'day')} // TODO: pass actual view prop/param
+          >
+            <RiDeleteBinFill />
+          </Button>
+        </ButtonsWrapper>
+      </Wrapper>
+      <Modal visible={visible}>
+        <PostForm
+          action={editPost}
+          editablePost={post}
+          onCancel={closeModal}
+          type={PostForm.FormType.Edit}
+          view={'day'} // TODO: pass actual view prop/param
+        />
+      </Modal>
+    </>
   )
 }

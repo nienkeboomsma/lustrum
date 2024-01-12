@@ -66,7 +66,6 @@ export async function editPost(
   await Post.findByIdAndUpdate(postId, payload)
 
   revalidate()
-  redirectToPage(date, view)
 }
 
 export async function deletePost(postId: string, date: Date, view: string) {
@@ -74,5 +73,4 @@ export async function deletePost(postId: string, date: Date, view: string) {
   await Post.findByIdAndDelete(postId)
 
   revalidate()
-  redirectToPage(date, view)
 }

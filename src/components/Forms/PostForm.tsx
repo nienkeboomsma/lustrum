@@ -81,13 +81,15 @@ export default function PostForm(props: PostFormProps) {
   const [date, setDate] = useState(defaultDate)
 
   const actionWithParams = editablePost
-    ? async () =>
-        (action as EditPostAction)(
+    ? async () => {
+        await (action as EditPostAction)(
           (editablePost as ClientSidePost).id,
           content,
           date,
           view
         )
+        onCancel() // TODO: rename/refactor this
+      }
     : async () => (action as NewPostAction)(content, date, view)
 
   return (
