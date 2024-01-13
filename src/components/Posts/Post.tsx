@@ -10,6 +10,15 @@ import useModal from '@/hooks/useModal'
 import Modal from '../Forms/Modal'
 import PostForm from '../Forms/PostForm'
 
+type DeletePostAction = typeof deletePost
+type EditPostAction = typeof editPost
+
+type PostProps = {
+  deletePostFn: DeletePostAction
+  editPostFn: EditPostAction
+  post: ClientSidePost
+}
+
 const Wrapper = styled.div`
   display: flex;
   gap: 0.8rem;
@@ -53,15 +62,14 @@ const Button = styled.button`
   }
 `
 
-export default function Post({ post }: { post: ClientSidePost }) {
+export default function Post({ deletePostFn, editPostFn, post }: PostProps) {
   const { visible, openModal, closeModal } = useModal()
 
   return (
     <>
       <Wrapper>
         <PostWrapper>
-          {JSON.stringify(post.content)}
-          {/* <Tiptap defaultContent={post.content} editable={false} /> */}
+          <Tiptap defaultContent={post.content} editable={false} />
         </PostWrapper>
         <ButtonsWrapper>
           <Button aria-label='edit post' type='button' onClick={openModal}>
@@ -71,7 +79,11 @@ export default function Post({ post }: { post: ClientSidePost }) {
           <Button
             aria-label='delete post'
             type='button'
-            onClick={() => deletePost(post.id, post.localDate, 'day')} // TODO: pass actual view prop/param
+            onClick={() =>
+              window.confirm(
+                'Are you sure you want to delete this post? This action cannot be undone.'
+              ) && deletePostFn(post)
+            }
           >
             <RiDeleteBinFill />
           </Button>
@@ -79,11 +91,10 @@ export default function Post({ post }: { post: ClientSidePost }) {
       </Wrapper>
       <Modal visible={visible}>
         <PostForm
-          action={editPost}
+          action={editPostFn}
           editablePost={post}
-          onCancel={closeModal}
+          closeModal={closeModal}
           type={PostForm.FormType.Edit}
-          view={'day'} // TODO: pass actual view prop/param
         />
       </Modal>
     </>

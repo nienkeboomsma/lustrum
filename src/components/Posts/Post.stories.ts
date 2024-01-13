@@ -17,12 +17,16 @@ export default meta
 
 export const Tiny: Story = {
   args: {
+    deletePostFn: async () => {},
+    editPostFn: async () => {},
     post: posts['03-01-1900'][0],
   },
 }
 
 export const Medium: Story = {
   args: {
+    deletePostFn: async () => {},
+    editPostFn: async () => {},
     post: posts['01-01-1900'][0],
   },
 }

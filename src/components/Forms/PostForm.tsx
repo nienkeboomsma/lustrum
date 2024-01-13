@@ -17,8 +17,9 @@ type NewPostAction = typeof addPost
 type EditPostAction = typeof editPost
 
 type NewPostProps = {
-  type: FormType.New
   action: NewPostAction
+  type: FormType.New
+  view: 'day' | 'month'
 }
 
 type EditPostProps = {
@@ -28,8 +29,7 @@ type EditPostProps = {
 }
 
 export type PostFormProps = {
-  onCancel: () => void
-  view: string
+  closeModal: () => void
 } & (NewPostProps | EditPostProps)
 
 const Form = styled.form`
@@ -66,7 +66,9 @@ const compensateTimezoneOffset = (date: Date) => {
 }
 
 export default function PostForm(props: PostFormProps) {
-  const { action, onCancel, type, view } = props
+  const { action, closeModal, type } = props
+
+  const view = type === FormType.New ? props.view : 'day'
 
   // the presence or absence of editablePost is a proxy for the 'type'
   // prop, because it is the discriminator between the two types
@@ -80,20 +82,23 @@ export default function PostForm(props: PostFormProps) {
     : new Date()
   const [date, setDate] = useState(defaultDate)
 
-  const actionWithParams = editablePost
-    ? async () => {
-        await (action as EditPostAction)(
-          (editablePost as ClientSidePost).id,
-          content,
-          date,
-          view
-        )
-        onCancel() // TODO: rename/refactor this
-      }
-    : async () => (action as NewPostAction)(content, date, view)
+  const editPostActionWithParams = async () => {
+    await (action as EditPostAction)(
+      (editablePost as ClientSidePost).id,
+      content,
+      date
+    )
+    closeModal()
+  }
+  const addPostActionWithParams = async () =>
+    (action as NewPostAction)(content, date, view)
+
+  const formAction = editablePost
+    ? editPostActionWithParams
+    : addPostActionWithParams
 
   return (
-    <Form action={actionWithParams}>
+    <Form action={formAction}>
       <DatepickerWrapper>
         <Datepicker aria-label='Date' defaultDate={date} onChange={setDate} />
       </DatepickerWrapper>
@@ -107,7 +112,7 @@ export default function PostForm(props: PostFormProps) {
       <ButtonsWrapper>
         <Button
           intent={Button.Intent.Secondary}
-          onClick={onCancel}
+          onClick={closeModal}
           shadow={false}
           shape={Button.Shape.Rectangle}
           size={Button.Size.Medium}

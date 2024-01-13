@@ -1,7 +1,8 @@
 'use client'
 
 import styled, { css } from 'styled-components'
-import { EditorEvents, EditorProvider } from '@tiptap/react'
+import { useEffect } from 'react'
+import { EditorEvents, useEditor, EditorContent } from '@tiptap/react'
 import Highlight from '@tiptap/extension-highlight'
 import Link from '@tiptap/extension-link'
 import Menu from './Menu'
@@ -138,16 +139,21 @@ export default function Tiptap(props: TiptapProps) {
     Underline,
   ]
 
+  const editor = useEditor({
+    editable,
+    extensions,
+    content: defaultContent,
+    onUpdate,
+  })
+
+  useEffect(() => {
+    editor?.commands.setContent(defaultContent)
+  }, [defaultContent, editor])
+
   return (
     <Wrapper $editable={editable}>
-      <EditorProvider // TODO: see if there is a SSR-friendly way to do this
-        content={defaultContent}
-        editable={editable}
-        extensions={extensions}
-        onUpdate={onUpdate}
-      >
-        <Menu />
-      </EditorProvider>
+      <EditorContent editor={editor} />
+      <Menu editor={editor} />
     </Wrapper>
   )
 }

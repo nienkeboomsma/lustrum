@@ -1,6 +1,6 @@
 import getPostsByDate from '@/utils/getPostsByDate'
 import PostGroup from '@/components/Posts/PostGroup'
-import Link from 'next/link'
+import { deletePost, editPost } from '@/app/actions'
 
 interface ParamsType {
   view: 'day' | 'month'
@@ -22,6 +22,13 @@ export default async function PostsPage({ params }: { params: ParamsType }) {
   }
 
   return dates.map((date) => (
-    <PostGroup key={date} posts={posts[date]} view={view} date={date} />
+    <PostGroup
+      key={date}
+      date={date}
+      deletePostFn={deletePost}
+      editPostFn={editPost}
+      posts={posts[date]}
+      view={view}
+    />
   ))
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BubbleMenu } from '@tiptap/react'
+import { BubbleMenu, Editor } from '@tiptap/react'
 import {
   RiBold,
   RiItalic,
@@ -15,7 +15,6 @@ import {
   RiDoubleQuotesL,
   RiFormatClear,
 } from 'react-icons/ri'
-import { useCurrentEditor } from '@tiptap/react'
 
 const MenuWrapper = styled(BubbleMenu)`
   background-color: #222;
@@ -57,9 +56,7 @@ const Button = styled(_Button)`
   }
 `
 
-export default function Menu() {
-  const { editor } = useCurrentEditor()
-
+export default function Menu({ editor }: { editor: Editor | null }) {
   if (!editor) {
     return null
   }
