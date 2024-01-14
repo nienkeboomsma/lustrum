@@ -1,6 +1,7 @@
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 import PostWrapper from '../Posts/PostWrapper'
+import { hsla } from '@/utils/hsla'
 
 type ModalProps = {
   children: React.ReactNode
@@ -10,13 +11,12 @@ type ModalProps = {
 
 const OuterContainer = styled.div`
   backdrop-filter: blur(6px);
-  /* background-color: ${({ theme }) => theme.s200}; */
+  background-color: ${({ theme }) => hsla(theme.s200, 0.5)};
   height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   width: 100vw;
-  /* bg-december-200/[0.6] */
 `
 
 const InnerContainer = styled(PostWrapper)`

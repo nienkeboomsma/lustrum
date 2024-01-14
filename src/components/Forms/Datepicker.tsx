@@ -1,5 +1,6 @@
 'use client'
 
+import { hsla } from '@/utils/hsla'
 import OriginalDatepicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import styled, { css } from 'styled-components'
@@ -47,7 +48,7 @@ const Wrapper = styled.div`
 
     .react-datepicker__day {
       &.react-datepicker__day--outside-month {
-        color: #bbb;
+        color: ${hsla(theme.s600, 0.7)};
       }
 
       &.react-datepicker__day--today {
