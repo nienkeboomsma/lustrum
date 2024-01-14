@@ -89,7 +89,7 @@ export default function Post({ deletePostFn, editPostFn, post }: PostProps) {
           </Button>
         </ButtonsWrapper>
       </Wrapper>
-      <Modal visible={visible}>
+      <Modal closeModal={closeModal} visible={visible}>
         <PostForm
           action={editPostFn}
           editablePost={post}

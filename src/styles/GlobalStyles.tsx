@@ -42,6 +42,10 @@ const GlobalStyles = createGlobalStyle`
          outline-offset: -1px;
     }
   }
+
+  .root {
+    isolation: isolate;
+  }
 `
 
 export default GlobalStyles
