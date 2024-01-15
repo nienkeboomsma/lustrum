@@ -1,3 +1,4 @@
+import { hsla } from '@/utils/hsla'
 import styled, { css } from 'styled-components'
 import { DefaultTheme } from 'styled-components'
 
@@ -80,10 +81,10 @@ const getBoxShadow = (
 ) => {
   if (!$shadow) return
 
-  const defaultShadow = `0 16px 20px -4px ${theme.s200},
-  0 6px 8px -5px ${theme.s200};`
-  const activeShadow = `0 10px 15px -3px ${theme.s200},
-  0 4px 6px -4px ${theme.s200}`
+  const defaultShadow = `0 16px 20px -4px ${hsla(theme.s500, 0.25)},
+  0 6px 8px -5px ${hsla(theme.s500, 0.25)};`
+  const activeShadow = `0 10px 15px -3px ${hsla(theme.s500, 0.25)},
+  0 4px 6px -4px ${hsla(theme.s500, 0.25)}`
 
   return active ? activeShadow : defaultShadow
 }
