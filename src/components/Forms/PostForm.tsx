@@ -37,6 +37,7 @@ const Form = styled.form`
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
+  width: 33rem;
 `
 
 const DatepickerWrapper = styled.div`
@@ -90,8 +91,10 @@ export default function PostForm(props: PostFormProps) {
     )
     closeModal()
   }
-  const addPostActionWithParams = async () =>
-    (action as NewPostAction)(content, date, view)
+  const addPostActionWithParams = async () => {
+    await (action as NewPostAction)(content, date, view)
+    closeModal()
+  }
 
   const formAction = editablePost
     ? editPostActionWithParams

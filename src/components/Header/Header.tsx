@@ -6,7 +6,7 @@ import { getLocaleDate } from '@/utils/getLocaleDate'
 import { RiAddLine } from 'react-icons/ri'
 import { addPost } from '@/app/actions'
 import useModal from '@/hooks/useModal'
-import Modal from '../Forms/Modal'
+import Modal from '../Modal/Modal'
 import PostForm from '../Forms/PostForm'
 
 type AddPostAction = typeof addPost
@@ -78,7 +78,7 @@ export default function Header({ addPostFn, date, view }: HeaderProps) {
       <Wrapper>
         <Title>{displayDate}</Title>
         <ButtonWrapper>
-          <AddButton onClick={openModal}>
+          <AddButton aria-label='add post' onClick={openModal}>
             <RiAddLine />
           </AddButton>
         </ButtonWrapper>

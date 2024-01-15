@@ -13,10 +13,6 @@ export default async function PostsPage({ params }: { params: ParamsType }) {
   const posts = await getPostsByDate(view, date)
   const dates = Object.keys(posts)
 
-  if (dates.length === 0) {
-    return 'Oops, nothing to show here'
-  }
-
   if (view === 'day') {
     const alphabetDesc = (a: string, b: string) => b.localeCompare(a)
     dates.sort(alphabetDesc)
