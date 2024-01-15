@@ -3,6 +3,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Button from '../Forms/Button'
+import { getLocaleDate } from '@/utils/getLocaleDate'
 
 const Wrapper = styled.div`
   margin: 1.5rem auto;
@@ -17,19 +18,10 @@ export default function PostDate({
   date: string
 }) {
   const href = `/${view === 'day' ? 'month' : 'day'}/${date}`
-
-  const getDisplayDate = () => {
-    const [day, month, year] = date.split('-')
-    const dateObj = new Date(Number(year), Number(month) - 1, Number(day))
-    const localeDate = dateObj.toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-    return view === 'day' ? localeDate.slice(2) : localeDate.slice(0, -5)
-  }
-
-  const displayDate = getDisplayDate()
+  const displayDate =
+    view === 'day'
+      ? `${getLocaleDate(date, 'year')}`
+      : `${getLocaleDate(date, 'day')} ${getLocaleDate(date, 'month')}`
 
   return (
     <Wrapper>
