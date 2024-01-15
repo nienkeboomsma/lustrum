@@ -57,8 +57,7 @@ export async function addPost(
 export async function editPost(
   postId: string,
   content: ClientSidePost['content'],
-  date: Date,
-  view: string
+  date: Date
 ) {
   const payload = createPayload(content, date, postId)
 
@@ -66,13 +65,11 @@ export async function editPost(
   await Post.findByIdAndUpdate(postId, payload)
 
   revalidate()
-  redirectToPage(date, view)
 }
 
-export async function deletePost(postId: string, date: Date, view: string) {
+export async function deletePost(post: ClientSidePost) {
   await connectToDB()
-  await Post.findByIdAndDelete(postId)
+  await Post.findByIdAndDelete(post.id)
 
   revalidate()
-  redirectToPage(date, view)
 }

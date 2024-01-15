@@ -26,18 +26,18 @@ const meta = {
 
 export default meta
 
-const fakeNewAction: typeof addPost = async (content, date, id) => {
-  console.table({ content, date, id })
+const fakeNewAction: typeof addPost = async (content, date, view) => {
+  console.table({ content, date, view })
 }
 
-const fakeEditAction: typeof editPost = async (postId, content, date, id) => {
-  console.table({ postId, content, date, id })
+const fakeEditAction: typeof editPost = async (postId, content, date) => {
+  console.table({ postId, content, date })
 }
 
 export const NewPost: Story = {
   args: {
     action: fakeNewAction,
-    onCancel: () => {},
+    closeModal: () => {},
     type: PostForm.FormType.New,
     view: 'day',
   },
@@ -47,8 +47,7 @@ export const EditPost: Story = {
   args: {
     action: fakeEditAction,
     editablePost: posts['01-01-1900'][0],
-    onCancel: () => {},
+    closeModal: () => {},
     type: PostForm.FormType.Edit,
-    view: 'month',
   },
 }

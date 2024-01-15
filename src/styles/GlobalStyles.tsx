@@ -26,20 +26,25 @@ const GlobalStyles = createGlobalStyle`
 
   input, button, textarea, select {
     font: inherit;
-
-    &:focus {
+    
+    &:focus-visible {
       outline: ${({ theme }) => theme.s500} solid 2px;
     }
+
   }
 
   input, textarea, select {
     width: 100%;
 
-    &:focus {
-      /* seemingly the only way to fix the inconsistent
+    &:focus-visible {
+          /* seemingly the only way to fix the inconsistent
          outline-offset between Tiptap and inputs on Safari */
-      outline-offset: -1px;
+         outline-offset: -1px;
     }
+  }
+
+  .root {
+    isolation: isolate;
   }
 `
 

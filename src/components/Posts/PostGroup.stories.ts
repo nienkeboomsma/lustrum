@@ -17,16 +17,20 @@ export default meta
 
 export const OnePost: Story = {
   args: {
+    date: '02-01-1900',
+    deletePostFn: async () => {},
+    editPostFn: async () => {},
     posts: posts['02-01-1900'],
     view: 'day',
-    date: '02-01-1900',
   },
 }
 
 export const MultiplePosts: Story = {
   args: {
+    date: '03-01-1900',
+    deletePostFn: async () => {},
+    editPostFn: async () => {},
     posts: posts['03-01-1900'],
     view: 'month',
-    date: '03-01-1900',
   },
 }

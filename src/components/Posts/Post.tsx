@@ -1,18 +1,108 @@
 'use client'
 
 import styled from 'styled-components'
-import PostWrapper from './PostWrapper'
+import OriginalPostWrapper from './PostWrapper'
 import Tiptap from '../Tiptap/Tiptap'
 import { type ClientSidePost } from '@/utils/getPostsByDate'
+import { RiDeleteBinFill, RiPencilFill } from 'react-icons/ri'
+import { deletePost, editPost } from '@/app/actions'
+import useModal from '@/hooks/useModal'
+import Modal from '../Forms/Modal'
+import PostForm from '../Forms/PostForm'
 
-const Wrapper = styled(PostWrapper)`
-  padding: 1.25rem 1.5rem;
+type DeletePostAction = typeof deletePost
+type EditPostAction = typeof editPost
+
+type PostProps = {
+  deletePostFn: DeletePostAction
+  editPostFn: EditPostAction
+  post: ClientSidePost
+}
+
+const Wrapper = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  position: relative;
+  left: 0.95rem;
+  width: max-content;
 `
 
-export default function Post({ post }: { post: ClientSidePost }) {
+const PostWrapper = styled(OriginalPostWrapper)`
+  padding: 1.5rem 1.75rem;
+`
+
+const ButtonsWrapper = styled.div`
+  color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-top: 0.6rem;
+
+  ${Wrapper}:hover > & {
+    color: ${({ theme }) => theme.s500};
+    transition: color cubic-bezier(0.4, 0, 0.2, 1) 300ms;
+  }
+`
+
+const Button = styled.button`
+  all: unset;
+  cursor: pointer;
+  line-height: 0;
+
+  & > svg {
+    height: 1.1rem;
+    width: 1.1rem;
+
+    &:active {
+      transform: translateY(1px);
+      transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.s400};
+    }
+  }
+
+  &:focus-visible > svg {
+    color: ${({ theme }) => theme.s500};
+  }
+`
+
+export default function Post({ deletePostFn, editPostFn, post }: PostProps) {
+  const { visible, openModal, closeModal } = useModal()
+
   return (
-    <Wrapper>
-      <Tiptap defaultContent={post.content} editable={false} />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <PostWrapper>
+          <Tiptap defaultContent={post.content} editable={false} />
+        </PostWrapper>
+        <ButtonsWrapper>
+          <Button aria-label='edit post' type='button' onClick={openModal}>
+            <RiPencilFill />
+          </Button>
+          {/* TODO: add a toast for 'post successfully removed */}
+          <Button
+            aria-label='delete post'
+            type='button'
+            onClick={() =>
+              window.confirm(
+                'Are you sure you want to delete this post? This action cannot be undone.'
+              ) && deletePostFn(post)
+            }
+          >
+            <RiDeleteBinFill />
+          </Button>
+        </ButtonsWrapper>
+      </Wrapper>
+      <Modal closeModal={closeModal} visible={visible}>
+        <PostForm
+          action={editPostFn}
+          editablePost={post}
+          closeModal={closeModal}
+          type={PostForm.FormType.Edit}
+        />
+      </Modal>
+    </>
   )
 }
