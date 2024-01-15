@@ -81,10 +81,10 @@ const getBoxShadow = (
 ) => {
   if (!$shadow) return
 
-  const defaultShadow = `0 16px 20px -4px ${hsla(theme.s500, 0.3)},
-  0 6px 8px -5px ${hsla(theme.s500, 0.3)};`
-  const activeShadow = `0 10px 15px -3px ${hsla(theme.s500, 0.3)},
-  0 4px 6px -4px ${hsla(theme.s500, 0.3)}`
+  const defaultShadow = `0 16px 20px -4px ${hsla(theme.s500, 0.25)},
+  0 6px 8px -5px ${hsla(theme.s500, 0.25)};`
+  const activeShadow = `0 10px 15px -3px ${hsla(theme.s500, 0.25)},
+  0 4px 6px -4px ${hsla(theme.s500, 0.25)}`
 
   return active ? activeShadow : defaultShadow
 }
