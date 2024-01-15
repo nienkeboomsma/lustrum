@@ -32,7 +32,7 @@ export default function Modal({ children, closeModal, visible }: ModalProps) {
       {visible &&
         createPortal(
           <OuterContainer onClick={closeModal}>
-            <InnerContainer onClick={(e) => e.stopPropagation}>
+            <InnerContainer onClick={(e) => e.stopPropagation()}>
               {children}
             </InnerContainer>
           </OuterContainer>,

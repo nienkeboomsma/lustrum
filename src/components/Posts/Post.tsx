@@ -40,6 +40,7 @@ const ButtonsWrapper = styled.div`
 
   ${Wrapper}:hover > & {
     color: ${({ theme }) => theme.s500};
+    transition: color cubic-bezier(0.4, 0, 0.2, 1) 300ms;
   }
 `
 
@@ -51,6 +52,11 @@ const Button = styled.button`
   & > svg {
     height: 1.1rem;
     width: 1.1rem;
+
+    &:active {
+      transform: translateY(1px);
+      transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
 
     &:hover {
       color: ${({ theme }) => theme.s400};
