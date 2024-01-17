@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import PostDate from './PostDate'
-import posts from '../../stories/fixtures/posts'
 
 type Story = StoryObj<typeof meta>
 

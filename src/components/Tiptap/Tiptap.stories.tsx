@@ -65,21 +65,21 @@ export const Editable: Story = {
 
 export const InlineFormatting: Story = {
   args: {
-    defaultContent: posts['01-01-1900'][0].content,
+    content: posts['01-01-1900'][0].content,
     editable: false,
   },
 }
 
 export const HeadingsAndQuote: Story = {
   args: {
-    defaultContent: posts['01-01-1900'][1].content,
+    content: posts['01-01-1900'][1].content,
     editable: false,
   },
 }
 
 export const Lists: Story = {
   args: {
-    defaultContent: posts['02-01-1900'][0].content,
+    content: posts['02-01-1900'][0].content,
     editable: false,
   },
 }

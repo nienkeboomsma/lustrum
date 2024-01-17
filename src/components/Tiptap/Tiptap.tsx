@@ -13,7 +13,7 @@ import Underline from '@tiptap/extension-underline'
 
 type NonEditableProps = {
   editable: false
-  defaultContent: object | string
+  content: object | string
 }
 
 type EditableProps = {
@@ -123,7 +123,10 @@ const Wrapper = styled.div<{ $editable: boolean }>`
 `
 
 export default function Tiptap(props: TiptapProps) {
-  const { defaultContent, editable } = props
+  const { editable } = props
+
+  const content = editable ? undefined : props.content
+  const defaultContent = editable ? props.defaultContent : undefined
   const placeholder = editable ? props.placeholder : undefined
   const onUpdate = editable ? props.onUpdate : undefined
 
@@ -142,13 +145,14 @@ export default function Tiptap(props: TiptapProps) {
   const editor = useEditor({
     editable,
     extensions,
-    content: defaultContent,
+    content: content || defaultContent,
     onUpdate,
   })
 
   useEffect(() => {
-    editor?.commands.setContent(defaultContent)
-  }, [defaultContent, editor])
+    if (!content) return
+    editor?.commands.setContent(content)
+  }, [content, editor])
 
   return (
     <Wrapper $editable={editable}>

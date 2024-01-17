@@ -100,7 +100,7 @@ export default function Post({ deletePostFn, editPostFn, post }: PostProps) {
       <Wrapper>
         <PostWrapper>
           <Contents>
-            <Tiptap defaultContent={post.content} editable={false} />
+            <Tiptap content={post.content} editable={false} />
           </Contents>
         </PostWrapper>
         <ButtonsWrapper>
