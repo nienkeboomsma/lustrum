@@ -72,8 +72,12 @@ const Button = styled.button`
     }
   }
 
-  &:focus-visible > svg {
-    color: ${({ theme }) => theme.s500};
+  &:focus-visible {
+    border-radius: 2px;
+
+    & > svg {
+      color: ${({ theme }) => theme.s500};
+    }
   }
 `
 

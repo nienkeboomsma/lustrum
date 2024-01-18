@@ -35,8 +35,9 @@ const Wrapper = styled.div`
         outline: 0;
 
         .react-datepicker__navigation-icon::before {
+          border-radius: 1px;
           outline: ${theme.s600} solid 2px;
-          outline-offset: 2px;
+          outline-offset: 2.5px;
         }
       }
     }
@@ -79,6 +80,10 @@ const Wrapper = styled.div`
         font-weight: 700;
       }
 
+      &.react-datepicker__day--keyboard-selected {
+        background-color: white !important;
+      }
+
       &:hover {
         background-color: ${theme.s200};
         color: ${theme.s950};
@@ -90,18 +95,18 @@ const Wrapper = styled.div`
     }
 
     .react-datepicker__time-list-item {
+      border-radius: 0.3rem;
+      height: min-content !important;
+      padding: 0.225rem 0px !important;
+      margin: 0.375rem 0.3rem !important;
+
       &:focus-visible {
         outline: ${theme.s600} solid 2px;
-        outline-offset: -4px;
+        outline-offset: 2px;
       }
 
       &.react-datepicker__time-list-item--selected {
         background-color: ${theme.s600} !important;
-
-        &:focus-visible {
-          outline: white solid 2px;
-          outline-offset: -4px;
-        }
       }
 
       &:hover {
