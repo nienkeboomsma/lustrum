@@ -30,9 +30,20 @@ const Wrapper = styled.div`
       border-bottom: none;
     }
 
+    .react-datepicker__navigation {
+      &:focus-visible {
+        outline: 0;
+
+        .react-datepicker__navigation-icon::before {
+          outline: ${theme.s600} solid 2px;
+          outline-offset: 2px;
+        }
+      }
+    }
+
     .react-datepicker__navigation-icon::before {
       border-color: black;
-      top: 8px;
+      top: 13px;
     }
 
     .react-datepicker__current-month {
@@ -56,6 +67,12 @@ const Wrapper = styled.div`
         border-radius: 4.5px;
       }
 
+      &:focus-visible {
+        background-color: white;
+        outline: ${theme.s600} solid 2px;
+        outline-offset: 2px;
+      }
+
       &.react-datepicker__day--selected {
         background-color: ${theme.s600};
         color: white;
@@ -73,8 +90,18 @@ const Wrapper = styled.div`
     }
 
     .react-datepicker__time-list-item {
+      &:focus-visible {
+        outline: ${theme.s600} solid 2px;
+        outline-offset: -4px;
+      }
+
       &.react-datepicker__time-list-item--selected {
         background-color: ${theme.s600} !important;
+
+        &:focus-visible {
+          outline: white solid 2px;
+          outline-offset: -4px;
+        }
       }
 
       &:hover {
