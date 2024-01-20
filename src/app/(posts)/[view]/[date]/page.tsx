@@ -2,6 +2,7 @@ import getPostsByDate from '@/utils/getPostsByDate'
 import Header from '@/components/Header/Header'
 import PostGroup from '@/components/Posts/PostGroup'
 import { addPost, deletePost, editPost } from '@/app/actions'
+import KeyboardNavigation from '@/components/KeyboardNavigation'
 
 interface ParamsType {
   view: 'day' | 'month'
@@ -20,6 +21,7 @@ export default async function PostsPage({ params }: { params: ParamsType }) {
 
   return (
     <>
+      <KeyboardNavigation />
       <Header addPostFn={addPost} date={date} view={view} />
       {dates.map((date) => (
         <PostGroup

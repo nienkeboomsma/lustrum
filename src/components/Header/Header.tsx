@@ -49,19 +49,25 @@ const ButtonWrapper = styled.div`
 const AddButton = styled.button`
   all: unset;
   cursor: pointer;
+  line-height: 0;
+
+  &:active {
+    transform: translateY(1px);
+    transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+  }
+
+  &:focus-visible {
+    border-radius: 0.25rem;
+    outline: ${({ theme }) => theme.s50} solid 2px;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.s200};
+  }
 
   & > svg {
     height: 2rem;
     width: 2rem;
-
-    &:active {
-      transform: translateY(1px);
-      transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
-    }
-
-    &:hover {
-      color: ${({ theme }) => theme.s200};
-    }
   }
 `
 
