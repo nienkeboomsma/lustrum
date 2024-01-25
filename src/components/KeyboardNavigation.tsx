@@ -43,7 +43,7 @@ export default function KeyboardNavigation() {
   }
 
   useEffect(() => {
-    if (!window) return
+    if (typeof window === 'undefined') return
 
     window.addEventListener('keydown', keyDownHandler)
 

@@ -35,10 +35,10 @@ const InnerContainer = styled(PostWrapper)`
 `
 
 export default function Modal({ children, closeModal, visible }: ModalProps) {
-  const modalRef: React.RefObject<HTMLDivElement> = useRef(null)
+  const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!window || !visible || !modalRef.current) return
+    if (typeof window === 'undefined' || !visible || !modalRef.current) return
 
     const modalElement = modalRef.current
 
@@ -101,7 +101,7 @@ export default function Modal({ children, closeModal, visible }: ModalProps) {
             <InnerContainer
               onClick={(e) => e.stopPropagation()}
               ref={modalRef}
-              tabIndex={0}
+              tabIndex={-1}
             >
               {children}
             </InnerContainer>
