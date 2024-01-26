@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components'
 import { hsla } from '@/utils/hsla'
-import { getLocaleDate } from '@/utils/getLocaleDate'
+import { getLocaleDateFromString } from '@/utils/getLocaleDateFromString'
 import { RiAddLine } from 'react-icons/ri'
 import { addPost } from '@/app/actions'
 import useModal from '@/hooks/useModal'
@@ -72,10 +72,11 @@ const AddButton = styled.button`
 `
 
 export default function Header({ addPostFn, date, view }: HeaderProps) {
+  const [localeDay, localeMonth, localeYear] = getLocaleDateFromString(date)
   const displayDate =
     view === 'day'
-      ? `${getLocaleDate(date, 'day')} ${getLocaleDate(date, 'month')}`
-      : `${getLocaleDate(date, 'month')} ${getLocaleDate(date, 'year')}`
+      ? `${localeDay} ${localeMonth}`
+      : `${localeMonth} ${localeYear}`
 
   const { visible, openModal, closeModal } = useModal()
 
