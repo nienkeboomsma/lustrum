@@ -1,4 +1,4 @@
-import { getPaddedDayMonthYearString } from '@/utils/dateStrings'
+import { getPaddedDayMonthYearString } from '@/utils/getPaddedDateString'
 import { redirect } from 'next/navigation'
 
 export default function Home() {

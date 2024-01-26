@@ -2,7 +2,7 @@
 
 import Post, { ServerSidePost } from '@/models/posts'
 import connectToDB from '@/services/mongodb'
-import { getPaddedDayMonthYearString } from '@/utils/dateStrings'
+import { getPaddedDayMonthYearString } from '@/utils/getPaddedDateString'
 import { ClientSidePost } from '@/utils/getPostsByDate'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'

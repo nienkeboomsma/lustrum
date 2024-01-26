@@ -1,5 +1,5 @@
 import themes, { MonthNumber } from '@/styles/theme'
-import { getPaddedMonthString } from '@/utils/dateStrings'
+import { getPaddedMonthString } from '@/utils/getPaddedDateString'
 import { isEnumValue } from '@/utils/enum'
 import { usePathname } from 'next/navigation'
 
