@@ -3,11 +3,15 @@
 import styled, { css } from 'styled-components'
 import { hsla } from '@/utils/hsla'
 import { getLocaleDateFromString } from '@/utils/getLocaleDateFromString'
-import { RiAddLine } from 'react-icons/ri'
+import { RiAddLine, RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { addPost } from '@/app/actions'
 import useModal from '@/hooks/useModal'
 import Modal from '../Modal/Modal'
 import PostForm from '../Forms/PostForm'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { getAdjoiningDatePath } from '@/utils/getAdjoiningDatePath'
+import HeaderControl from './HeaderControl'
 
 type AddPostAction = typeof addPost
 
@@ -17,19 +21,25 @@ type HeaderProps = {
   view: 'day' | 'month'
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   ${({ theme }) => css`
     background-color: ${theme.s500};
     box-shadow: 0 10px 15px -3px ${hsla(theme.s500, 0.3)},
       0 4px 6px -4px ${hsla(theme.s500, 0.3)};
     color: ${theme.s50};
+    display: flex;
+    justify-content: center;
     padding: 0.875rem;
     position: sticky;
     text-align: center;
     top: 0;
-    width: 100vw;
     z-index: 1;
   `}
+`
+
+const TitleWrapper = styled.div`
+  align-items: center;
+  display: flex;
 `
 
 const Title = styled.h1`
@@ -38,37 +48,13 @@ const Title = styled.h1`
   font-weight: 300;
   letter-spacing: 0.0625rem;
   text-transform: uppercase;
+  width: 13rem;
 `
 
 const ButtonWrapper = styled.div`
   position: absolute;
   right: 0.875rem;
   top: 0.875rem;
-`
-
-const AddButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  line-height: 0;
-
-  &:active {
-    transform: translateY(1px);
-    transition: transform cubic-bezier(0.4, 0, 0.2, 1) 150ms;
-  }
-
-  &:focus-visible {
-    border-radius: 0.25rem;
-    outline: ${({ theme }) => theme.s50} solid 2px;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.s200};
-  }
-
-  & > svg {
-    height: 2rem;
-    width: 2rem;
-  }
 `
 
 export default function Header({ addPostFn, date, view }: HeaderProps) {
@@ -79,15 +65,36 @@ export default function Header({ addPostFn, date, view }: HeaderProps) {
       : `${localeMonth} ${localeYear}`
 
   const { visible, openModal, closeModal } = useModal()
+  const path = usePathname()
 
   return (
     <>
       <Wrapper>
-        <Title>{displayDate}</Title>
+        <TitleWrapper>
+          <HeaderControl>
+            <Link
+              aria-label={`go to previous ${view}`}
+              href={getAdjoiningDatePath(-1, path)}
+            >
+              <RiArrowLeftSLine />
+            </Link>
+          </HeaderControl>
+          <Title>{displayDate}</Title>
+          <HeaderControl>
+            <Link
+              aria-label={`go to next ${view}`}
+              href={getAdjoiningDatePath(1, path)}
+            >
+              <RiArrowRightSLine />
+            </Link>
+          </HeaderControl>
+        </TitleWrapper>
         <ButtonWrapper>
-          <AddButton aria-label='add post' onClick={openModal}>
-            <RiAddLine />
-          </AddButton>
+          <HeaderControl>
+            <button aria-label='add post' onClick={openModal}>
+              <RiAddLine />
+            </button>
+          </HeaderControl>
         </ButtonWrapper>
       </Wrapper>
       <Modal closeModal={closeModal} visible={visible}>
