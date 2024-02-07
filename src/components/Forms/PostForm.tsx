@@ -77,7 +77,11 @@ export default function PostForm(props: PostFormProps) {
 
   const defaultContent = editablePost ? editablePost.content : ''
   const [content, setContent] = useState(defaultContent)
-  const fixedContent = JSON.parse(JSON.stringify(content)) // fixes Tiptap issue #4805
+
+  // replace straight apostrophes with curly apostrophes
+  const contentOutput = JSON.parse(
+    JSON.stringify(content).replace(/'(?<![a-z])/g, '’')
+  )
 
   const defaultDate = editablePost
     ? compensateTimezoneOffset(editablePost.localDate)
@@ -87,13 +91,13 @@ export default function PostForm(props: PostFormProps) {
   const editPostActionWithParams = async () => {
     await (action as EditPostAction)(
       (editablePost as ClientSidePost).id,
-      fixedContent,
+      contentOutput,
       date
     )
     closeModal()
   }
   const addPostActionWithParams = async () => {
-    await (action as NewPostAction)(fixedContent, date, view)
+    await (action as NewPostAction)(contentOutput, date, view)
     closeModal()
   }
 
