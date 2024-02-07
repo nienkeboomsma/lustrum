@@ -7,7 +7,7 @@ import { type ClientSidePost } from '@/utils/getPostsByDate'
 import { deletePost, editPost } from '@/app/actions'
 
 const Wrapper = styled.div`
-  margin: 0rem auto 2rem;
+  margin: 0rem auto 2.5rem;
   width: max-content;
 `
 

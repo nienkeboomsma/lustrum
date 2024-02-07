@@ -11,7 +11,7 @@ const PostWrapper = styled.div`
   margin: auto;
   padding: 1.5rem 1.5rem;
   text-align: left;
-  width: min-content;
+  width: fit-content;
 `
 
 export default PostWrapper

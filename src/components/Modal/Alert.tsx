@@ -15,9 +15,7 @@ type AlertProps = {
 
 const Wrapper = styled.div`
   margin-top: -0.375rem;
-  max-width: 27rem;
-  min-width: 18rem;
-  width: max-content;
+  width: min(75vw, 27rem);
 `
 
 const Title = styled.h1`

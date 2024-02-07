@@ -7,6 +7,12 @@ import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
   ${({ theme }) => css`
+    .react-datepicker-popper {
+      @media (max-width: 25rem) {
+        min-width: 18.55rem;
+      }
+    }
+
     .react-datepicker-wrapper {
       display: block;
     }
@@ -23,6 +29,14 @@ const Wrapper = styled.div`
 
     .react-datepicker__time-container {
       border-color: ${theme.s500};
+
+      @media (max-width: 25rem) {
+        width: 3.4rem;
+
+        & * {
+          width: 2.7rem;
+        }
+      }
     }
 
     .react-datepicker__header {
@@ -44,7 +58,15 @@ const Wrapper = styled.div`
 
     .react-datepicker__navigation-icon::before {
       border-color: black;
-      top: 13px;
+      top: 0.5rem;
+    }
+
+    .react-datepicker__navigation--next--with-time:not(
+        .react-datepicker__navigation--next--with-today-button
+      ) {
+      @media (max-width: 25rem) {
+        right: 3.5rem;
+      }
     }
 
     .react-datepicker__current-month {
@@ -97,8 +119,8 @@ const Wrapper = styled.div`
     .react-datepicker__time-list-item {
       border-radius: 0.3rem;
       height: min-content !important;
-      padding: 0.225rem 0px !important;
-      margin: 0.375rem 0.3rem !important;
+      padding: 0.225rem 0 !important;
+      margin: 0.4rem 0.3875rem 0.4rem 0.325rem !important;
 
       &:focus-visible {
         outline: ${theme.s600} solid 2px;

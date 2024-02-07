@@ -9,9 +9,9 @@ import useModal from '@/hooks/useModal'
 import Modal from '../Modal/Modal'
 import PostForm from '../Forms/PostForm'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { getAdjoiningDatePath } from '@/utils/getAdjoiningDatePath'
 import HeaderControl from './HeaderControl'
+import FloatingButton from './FloatingButton'
 
 type AddPostAction = typeof addPost
 
@@ -33,6 +33,7 @@ const Wrapper = styled.header`
     position: sticky;
     text-align: center;
     top: 0;
+    width: 100%;
     z-index: 1;
   `}
 `
@@ -55,9 +56,21 @@ const ButtonWrapper = styled.div`
   position: absolute;
   right: 0.875rem;
   top: 0.875rem;
+
+  @media (max-width: 25rem) {
+    display: none;
+  }
+`
+
+const StyledFloatingButton = styled(FloatingButton)`
+  @media (min-width: calc(25rem + 1px)) {
+    display: none;
+  }
 `
 
 export default function Header({ addPostFn, date, view }: HeaderProps) {
+  const path = `/${view}/${date}`
+
   const [localeDay, localeMonth, localeYear] = getLocaleDateFromString(date)
   const displayDate =
     view === 'day'
@@ -65,7 +78,6 @@ export default function Header({ addPostFn, date, view }: HeaderProps) {
       : `${localeMonth} ${localeYear}`
 
   const { visible, openModal, closeModal } = useModal()
-  const path = usePathname()
 
   return (
     <>
@@ -96,6 +108,9 @@ export default function Header({ addPostFn, date, view }: HeaderProps) {
             </button>
           </HeaderControl>
         </ButtonWrapper>
+        <StyledFloatingButton aria-label='add post' onClick={openModal}>
+          <RiAddLine />
+        </StyledFloatingButton>
       </Wrapper>
       <Modal closeModal={closeModal} visible={visible}>
         <PostForm

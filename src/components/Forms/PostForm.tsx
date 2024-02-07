@@ -37,7 +37,7 @@ const Form = styled.form`
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
-  width: 33rem;
+  width: min(75vw, 33rem);
 `
 
 const DatepickerWrapper = styled.div`

@@ -23,9 +23,10 @@ type PostProps = {
 const Wrapper = styled.div`
   display: flex;
   gap: 0.8rem;
+  left: 0.95rem;
   margin-bottom: 1.5rem;
   position: relative;
-  left: 0.95rem;
+  width: min(80vw, 38rem);
 
   &:last-child {
     margin-bottom: 0;
@@ -34,10 +35,7 @@ const Wrapper = styled.div`
 
 const PostWrapper = styled(OriginalPostWrapper)`
   padding: 1.5rem 1.75rem;
-`
-
-const Contents = styled.div`
-  width: 33rem;
+  width: 100%;
 `
 
 const ButtonsWrapper = styled.div`
@@ -103,9 +101,7 @@ export default function Post({ deletePostFn, editPostFn, post }: PostProps) {
     <>
       <Wrapper>
         <PostWrapper>
-          <Contents>
-            <Tiptap content={post.content} editable={false} />
-          </Contents>
+          <Tiptap content={post.content} editable={false} />
         </PostWrapper>
         <ButtonsWrapper>
           <Button aria-label='edit post' type='button' onClick={openEditModal}>
