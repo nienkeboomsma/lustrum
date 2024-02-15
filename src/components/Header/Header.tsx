@@ -63,8 +63,10 @@ const ButtonWrapper = styled.div`
 `
 
 const StyledFloatingButton = styled(FloatingButton)`
-  @media (min-width: calc(25rem + 1px)) {
-    display: none;
+  display: none;
+
+  @media (max-width: 25rem) {
+    display: flex;
   }
 `
 
