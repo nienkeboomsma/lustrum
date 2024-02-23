@@ -2,14 +2,14 @@
 
 import styled, { css } from 'styled-components'
 import { hsla } from '@/utils/hsla'
-import { getLocaleDateFromString } from '@/utils/getLocaleDateFromString'
+import getLocaleDateFromString from '@/utils/getLocaleDateFromString'
 import { RiAddLine, RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { addPost } from '@/app/actions'
 import useModal from '@/hooks/useModal'
 import Modal from '../Modal/Modal'
 import PostForm from '../Forms/PostForm'
 import Link from 'next/link'
-import { getAdjoiningDatePath } from '@/utils/getAdjoiningDatePath'
+import getAdjoiningDatePath from '@/utils/getAdjoiningDatePath'
 import HeaderControl from './HeaderControl'
 import FloatingButton from './FloatingButton'
 

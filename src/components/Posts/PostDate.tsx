@@ -3,7 +3,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Button from '../Forms/Button'
-import { getLocaleDateFromString } from '@/utils/getLocaleDateFromString'
+import getLocaleDateFromString from '@/utils/getLocaleDateFromString'
 
 const Wrapper = styled.div`
   margin: 1.5rem auto;

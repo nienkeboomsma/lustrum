@@ -1,16 +1,9 @@
+import getUTCDateFromString from './getUTCDateFromString'
 import { getPaddedDayMonthYearString } from './getPaddedDateString'
 
-export const getAdjoiningDatePath = (increment: -1 | 1, path: string) => {
+export default function getAdjoiningDatePath(increment: -1 | 1, path: string) {
   const [, view, date] = path.split('/')
-  const [dayString, monthString, yearString] = date.split('-')
-  const [day, month, year] = [
-    Number(dayString),
-    Number(monthString),
-    Number(yearString),
-  ]
-
-  const currentDate = Date.UTC(year, month - 1, day)
-  const newDate = new Date(currentDate)
+  const newDate = getUTCDateFromString(date)
 
   if (view === 'day') newDate.setUTCDate(newDate.getUTCDate() + increment)
   if (view === 'month') newDate.setUTCMonth(newDate.getUTCMonth() + increment)

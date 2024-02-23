@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { getAdjoiningDatePath } from '@/utils/getAdjoiningDatePath'
+import getAdjoiningDatePath from '@/utils/getAdjoiningDatePath'
 
 export default function KeyboardNavigation() {
   const path = usePathname()
