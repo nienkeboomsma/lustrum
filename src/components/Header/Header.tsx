@@ -10,6 +10,7 @@ import Modal from '../Modal/Modal'
 import PostForm from '../Forms/PostForm'
 import Link from 'next/link'
 import getAdjoiningDatePath from '@/utils/getAdjoiningDatePath'
+import getUTCDateFromString from '@/utils/getUTCDateFromString'
 import HeaderControl from './HeaderControl'
 import FloatingButton from './FloatingButton'
 
@@ -118,6 +119,7 @@ export default function Header({ addPostFn, date, view }: HeaderProps) {
         <PostForm
           action={addPostFn}
           closeModal={closeModal}
+          defaultDate={getUTCDateFromString(date)}
           type={PostForm.FormType.New}
           view={view}
         />

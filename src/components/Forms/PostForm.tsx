@@ -18,6 +18,7 @@ type EditPostAction = typeof editPost
 
 type NewPostProps = {
   action: NewPostAction
+  defaultDate: Date
   type: FormType.New
   view: 'day' | 'month'
 }
@@ -69,6 +70,8 @@ const compensateTimezoneOffset = (date: Date) => {
 export default function PostForm(props: PostFormProps) {
   const { action, closeModal, type } = props
 
+  const newPostDefaultDate =
+    type === FormType.New ? props.defaultDate : new Date()
   const view = type === FormType.New ? props.view : 'day'
 
   // the presence or absence of editablePost is a proxy for the 'type'
@@ -85,7 +88,7 @@ export default function PostForm(props: PostFormProps) {
 
   const defaultDate = editablePost
     ? compensateTimezoneOffset(editablePost.localDate)
-    : new Date()
+    : compensateTimezoneOffset(newPostDefaultDate)
   const [date, setDate] = useState(defaultDate)
 
   const editPostActionWithParams = async () => {
