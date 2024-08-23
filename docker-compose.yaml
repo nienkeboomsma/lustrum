@@ -1,0 +1,13 @@
+services:
+  lustrum:
+    build:
+      context: .
+    container_name: lustrum
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - PORT=${PORT}
+    ports:
+      - '${PORT}:${PORT}'
+    restart: always
+    # volumes:
+    # - ./src:/app/src
