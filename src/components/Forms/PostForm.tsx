@@ -95,12 +95,18 @@ export default function PostForm(props: PostFormProps) {
     await (action as EditPostAction)(
       (editablePost as ClientSidePost).id,
       contentOutput,
-      date
+      date,
+      date.getTimezoneOffset()
     )
     closeModal()
   }
   const addPostActionWithParams = async () => {
-    await (action as NewPostAction)(contentOutput, date, view)
+    await (action as NewPostAction)(
+      contentOutput,
+      date,
+      date.getTimezoneOffset(),
+      view
+    )
     closeModal()
   }
 

@@ -10,11 +10,11 @@ import { redirect } from 'next/navigation'
 const createPayload = (
   content: ClientSidePost['content'],
   date: Date,
+  timeOffset: number,
   postId?: string
 ) => {
   const absoluteDate = date
   // represent the local date in UTC format to prevent timezone shenanigans
-  const timeOffset = date.getTimezoneOffset()
   const localDate = new Date(date.valueOf() - timeOffset * 60 * 1000)
 
   const payload = {
@@ -42,24 +42,26 @@ const redirectToPage = (date: Date, view: string) => {
 export async function addPost(
   content: ClientSidePost['content'],
   date: Date,
+  timeOffset: number,
   view: string
 ) {
-  const payload = createPayload(content, date)
+  const payload = createPayload(content, date, timeOffset)
   const newPost = new Post(payload)
 
   await connectToDB()
   await newPost.save()
 
   revalidate()
-  redirectToPage(date, view)
+  redirectToPage(payload.localDate, view)
 }
 
 export async function editPost(
   postId: string,
   content: ClientSidePost['content'],
-  date: Date
+  date: Date,
+  timeOffset: number
 ) {
-  const payload = createPayload(content, date, postId)
+  const payload = createPayload(content, date, timeOffset, postId)
 
   await connectToDB()
   await Post.findByIdAndUpdate(postId, payload)

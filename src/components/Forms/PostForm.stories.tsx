@@ -26,12 +26,22 @@ const meta = {
 
 export default meta
 
-const fakeNewAction: typeof addPost = async (content, date, view) => {
-  console.table({ content, date, view })
+const fakeNewAction: typeof addPost = async (
+  content,
+  date,
+  timeOffset,
+  view
+) => {
+  console.table({ content, date, timeOffset, view })
 }
 
-const fakeEditAction: typeof editPost = async (postId, content, date) => {
-  console.table({ postId, content, date })
+const fakeEditAction: typeof editPost = async (
+  postId,
+  content,
+  date,
+  timeOffset
+) => {
+  console.table({ postId, content, date, timeOffset })
 }
 
 export const NewPost: Story = {
