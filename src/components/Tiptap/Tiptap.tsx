@@ -106,9 +106,14 @@ const Wrapper = styled.div<{ $editable: boolean }>`
     &:last-child {
       margin-bottom: 0;
     }
+
+    & p {
+      margin: 0;
+    }
   }
 
   & li {
+    margin: 0.25rem 0 0 0;
     padding-left: 0.375rem;
   }
 
